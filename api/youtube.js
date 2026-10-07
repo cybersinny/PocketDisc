@@ -23,8 +23,16 @@ async function toCD(p) {
     .filter(i => i.snippet.resourceId && i.snippet.resourceId.videoId &&
       !['Private video', 'Deleted video'].includes(i.snippet.title))
     .map(i => ({ id: i.snippet.resourceId.videoId, ...split(i.snippet.title, i.snippet.videoOwnerChannelTitle) }));
+  if (!tracks.length) return { id: p.id, count: 0 };
+  const vd = await g('videos', { part: 'contentDetails', id: tracks.map(t => t.id).join(',') });
+  const dm = {};
+  vd.items.forEach(v => {
+    const m = v.contentDetails.duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+    dm[v.id] = (+m[1] || 0) * 3600 + (+m[2] || 0) * 60 + (+m[3] || 0);
+  });
+  tracks.forEach(t => { t.dur = dm[t.id] || 0; });
   // YouTube has no album cover, so cover is null -> the site draws a homemade CD
-  return { id: p.id, name: p.snippet.title, cover: null, count: tracks.length, tracks };
+  return { id: p.id, name: p.snippet.title, cover: null, count: tracks.length, dur: tracks.reduce((x, t) => x + t.dur, 0), tracks };
 }
 
 module.exports = async (req, res) => {
