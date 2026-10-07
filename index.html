@@ -20,7 +20,7 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 .win{position:absolute;left:50px;top:60px;width:190px;height:170px;border:8px solid #fff;border-radius:8px;background:linear-gradient(#9fd8ff,#e6f6ff);box-shadow:0 0 0 2px #ffb3d6}
 .win::before,.win::after{content:'';position:absolute;background:#fff}
 .win::before{left:50%;top:0;bottom:0;width:6px}.win::after{top:50%;left:0;right:0;height:6px}
-.pos{position:absolute;top:70px;width:90px;height:120px;border-radius:4px;display:grid;place-items:center;font-size:34px;box-shadow:2px 3px 0 #0002;color:#fff}
+.pos{position:absolute;top:50px;width:90px;height:120px;border-radius:4px;display:grid;place-items:center;font-size:34px;box-shadow:2px 3px 0 #0002;color:#fff}
 .tv{position:absolute;right:30px;top:60px;width:220px;padding:8px 8px 4px;background:#cfe9ff;border:3px solid #fff;border-radius:18px;text-align:center;font-size:13px;box-shadow:0 4px 0 #8fb8dd}
 #yt{width:200px;height:200px;background:#222;border-radius:8px;overflow:hidden}
 .board{position:absolute;left:20px;right:20px;bottom:116px;height:24px;background:linear-gradient(#fff,#ffb3d6);border-radius:6px;box-shadow:0 4px 0 #d77fae}
@@ -47,6 +47,23 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 /* discman */
 .dm{position:absolute;left:330px;bottom:140px;width:340px;height:350px;padding:16px;border-radius:44px 44px 30px 30px;
  background:linear-gradient(145deg,#f4f8ff,#b9c9e6 55%,#8fa4cc);box-shadow:0 6px 0 #6f84ad,inset 0 0 0 3px #fff;perspective:700px}
+/* skin: round translucent portable */
+.dm.portable{width:340px;height:340px;padding:0;border-radius:50%;background:radial-gradient(circle at 30% 22%,#fffc,#fff0 42%),radial-gradient(circle,#ffd9ea,#ff9ac8);box-shadow:0 8px 0 #d77fae,inset 0 0 0 4px #fffb,inset 0 0 40px #fff9}
+.dm.portable::before{content:'';position:absolute;inset:0;border-radius:50%;pointer-events:none;opacity:.6;background:radial-gradient(#fff 1px,transparent 1.6px) 0 0/13px 13px,radial-gradient(#fff 1px,transparent 1.6px) 6px 7px/13px 13px}
+.dm.portable .well{position:absolute;left:54px;top:54px;width:232px;height:232px;margin:0}
+.dm.portable .lcd{position:absolute;left:111px;top:111px;width:118px;height:118px;margin:0;border-radius:50%;background:#f7b9d3;display:grid;place-items:center;z-index:3;box-shadow:0 0 0 3px #fff8,inset 0 0 8px #0003}
+.dm.portable .scr{width:98px;height:58px;padding:1px 6px}
+.dm.portable #l1{font-size:25px;line-height:28px}.dm.portable #l2{font-size:16px;gap:6px}
+.dm.portable .row{display:contents}
+.dm.portable .row button{position:absolute;left:153px;top:153px;width:34px;height:34px;padding:0;border-radius:50%;font-size:9px;z-index:5;box-shadow:0 2px 0 #d7609b;background:linear-gradient(#fff,#ffb3d6)}
+.dm.portable .r1 button{font-size:14px}
+/* skin: boombox */
+.dm.boombox{left:280px;width:440px;height:385px;padding:12px 16px;border-radius:26px;background:linear-gradient(145deg,#ffe3f1,#ff9ad0 60%,#ff7ab8);box-shadow:0 6px 0 #d7609b,inset 0 0 0 3px #fff}
+.dm.boombox .well{width:184px;height:184px}
+.dm.boombox .r2{flex-wrap:wrap;gap:6px}
+.spk{display:none}
+.dm.boombox .spk{display:block;position:absolute;top:72px;left:14px;width:112px;height:112px;border-radius:50%;background:radial-gradient(circle,#444 0 8%,#222 9% 12%,#ddd 13% 15%,#555 16% 100%);box-shadow:inset 0 0 0 6px #fff9,0 3px 0 #0003}
+.dm.boombox .spk.r{left:auto;right:14px}
 .dm.shake{animation:sh .12s}
 @keyframes sh{25%{transform:translate(-2px,1px)}75%{transform:translate(2px,-1px)}}
 .well{position:relative;width:176px;height:176px;margin:0 auto;border-radius:50%;background:#2b2f4a;display:grid;place-items:center;box-shadow:inset 0 0 14px #000}
@@ -58,14 +75,14 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 @keyframes ls{from{transform:translateX(14px)}to{transform:translateX(70px)}}
 .lid{position:absolute;inset:-4px;border-radius:50%;z-index:4;background:linear-gradient(135deg,#ffffffcc,#ffffff30);border:3px solid #fff9;transform-origin:50% 0;transition:transform .45s}
 .dm.open .lid{transform:rotateX(-115deg);pointer-events:none}.dm.open .tray .cd{cursor:pointer}
-.lcd{margin:8px 0;height:62px;padding:2px 10px;background:#b9cba2;border-radius:8px;box-shadow:inset 0 2px 6px #0006;font-family:'VT323',monospace;color:#25361a;overflow:hidden}
+.scr{height:56px;padding:2px 8px;background:#b9cba2;border-radius:8px;box-shadow:inset 0 2px 6px #0006;font-family:'VT323',monospace;color:#25361a;overflow:hidden}.lcd{margin:6px 24px}
 #l1{font-size:30px;line-height:34px;white-space:nowrap;overflow:hidden}
 #l1 span{display:inline-block}#l1 .sc{animation:mq 9s linear infinite;padding-left:100%}
 @keyframes mq{to{transform:translateX(-100%)}}
 #l2{font-size:20px;display:flex;gap:12px;opacity:.85}
 .row{display:flex;justify-content:center;gap:10px;margin-top:6px}
 .row button{border:0;cursor:pointer;color:var(--ink);font:inherit;box-shadow:0 3px 0 #6f84ad;transition:transform .08s}
-.row button:active{transform:translateY(3px);box-shadow:none}
+.row button:active{transform:translateY(3px);box-shadow:none;filter:brightness(.85)}
 .r1 button{width:50px;height:38px;border-radius:99px;background:linear-gradient(#fff,#ffb3d6);font-size:18px}
 .r2 button{padding:2px 9px;border-radius:99px;background:linear-gradient(#fff,#d6e4ff);font-size:13px}
 .r2 button.on{background:linear-gradient(#fff,#ff9ad0)}
@@ -92,33 +109,37 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 .pk{display:grid;place-items:center;border-radius:6px;background:linear-gradient(135deg,#ffffffb0,#d6e4ff80);border:2px solid #fff;cursor:pointer}
 .pn{display:flex;gap:10px;align-items:center;font-size:14px}.pn button{border:0;background:none;font-size:22px;cursor:pointer}
 .card label{display:flex;gap:8px;align-items:center;justify-content:space-between;width:100%;font-size:15px}.card label input,.card select{width:60%}.card input[type=color]{width:60px;height:30px;padding:0}.card input[type=checkbox]{width:auto}
+.box{position:absolute;left:30px;bottom:140px;width:250px;height:200px;display:none}.box.on{display:block}
+#bxc{position:absolute;inset:0}.bx{position:absolute;cursor:pointer;transition:transform .15s}.bx:hover{filter:drop-shadow(0 0 8px #fff);transform:translateY(-6px) rotate(var(--r))}
+.bf{position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(#ffb3d6,#ff7ab8);border:3px solid #fff;border-radius:8px 8px 14px 14px;box-shadow:0 5px 0 #d7609b;display:grid;place-items:center;font-size:20px;color:#fff;text-shadow:0 2px 0 #d7609b;z-index:2;pointer-events:none}
 .sp{position:fixed;z-index:70;pointer-events:none;font-size:20px}
 @media (prefers-reduced-motion:reduce){.st,.lamp i{animation:none}}
 </style>
 </head>
 <body>
 <div id="pan"><div id="room">
-  <div class="top"><button data-m="how">❔ How to use</button><button data-m="yt">▶ Add YouTube</button><button data-m="sp">♪ Add Spotify</button></div>
+  <div class="top"><button data-m="how">❔ How to use</button><button data-m="yt">▶ Add YouTube</button><button data-m="sp">♪ Add Spotify</button><button data-a="skin" id="bskin">Switch: Boombox</button></div>
   <div class="win"></div>
   <div class="pos" style="left:320px;background:#9fd8ff;transform:rotate(-4deg)">✦</div>
   <div class="pos" style="left:430px;background:#c9a6ff;transform:rotate(3deg)">♡</div>
-  <div class="tv">little tv<div id="yt"></div></div>
+  <div class="tv">little tv<div id="ytw"><div id="yt"></div></div><div id="sp" style="display:none"><div id="spi"></div></div></div>
 
   <div class="spindle" id="spin"><div class="arrows"><button data-a="sl" aria-label="Previous CD">⏪</button><button data-a="sr" aria-label="Next CD">⏩</button></div><div class="pole"></div><div class="stack" id="stack"></div></div>
   <div class="book" id="book"><div class="pg" id="pg"></div><div class="pn"><button data-a="bl" aria-label="Previous page">◀</button><span id="pn"></span><button data-a="br" aria-label="Next page">▶</button></div></div>
+  <div class="box" id="box"><div id="bxc"></div><div class="bf">CDs 💿</div></div>
 
-  <div class="dm" id="dm">
-    <div class="well"><div class="tray" id="tray"></div><div class="laser" id="laser"></div><div class="lid"></div></div>
-    <div class="lcd"><div id="l1"></div><div id="l2"></div></div>
+  <div class="dm portable" id="dm">
+    <i class="spk"></i><i class="spk r"></i><div class="well"><div class="tray" id="tray"></div><div class="laser" id="laser"></div><div class="lid"></div></div>
+    <div class="lcd"><div class="scr"><div id="l1"></div><div id="l2"></div></div></div>
     <div class="row r1"><button data-a="prev" aria-label="Previous track">⏮</button><button data-a="play" aria-label="Play or pause">⏯</button><button data-a="stop" aria-label="Stop">⏹</button><button data-a="next" aria-label="Next track">⏭</button></div>
-    <div class="row r2"><button data-a="disp">DISP</button><button data-a="rep" id="brep">REP</button><button data-a="shuf" id="bshuf">SHUF</button><button data-a="vm">VOL−</button><button data-a="vp">VOL+</button><button data-a="open">OPEN</button></div>
+    <div class="row r2"><button data-a="disp">DISP</button><button data-a="rep" id="brep">REP</button><button data-a="shuf" id="bshuf">SHUF</button><button data-a="vm">VOL−</button><button data-a="vp">VOL+</button><button data-a="open">OPEN</button><button data-a="intro" id="bintro">INTRO</button><button data-a="prog" id="bprog">PROG</button></div>
   </div>
 
   <div class="lamp"><div class="g"><i></i><i></i><i></i></div><div class="base"></div></div>
   <div class="heart" aria-hidden="true">♥</div>
   <div class="deco" style="left:915px">✨</div>
   <div class="board"></div>
-  <div class="cab"><div class="dr" id="d1"><button class="nm" data-a="dr1">drawer</button><div class="in" id="stk"></div></div><div class="dr" id="d2"><button class="nm" data-a="dr2">drawer</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Put CD book on shelf</button></div></div></div>
+  <div class="cab"><div class="dr" id="d1"><button class="nm" data-a="dr1">drawer</button><div class="in" id="stk"></div></div><div class="dr" id="d2"><button class="nm" data-a="dr2">drawer</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD book</button></div></div></div>
 </div></div>
 <div id="modal"></div><div id="rot">Turn your iPad sideways 🔄</div>
 
@@ -128,7 +149,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const COL=['#ff9ad0','#9fd8ff','#c9a6ff','#b5f0c4','#ffe38a','#ffb48a'];
 const mk=(id,name,n,i,src)=>({id,name,count:n,color:COL[i%6],src,cover:null,tracks:Array.from({length:n},(_,k)=>({id:'',title:'Track '+(k+1),artist:'Demo Artist'}))});
 let cds=[['Summer 2002 Mix',12],['Road Trip',9],['Sleepover Jams',15],['Chill Vibes',8],['Dance Dance',11]].map((d,i)=>mk('d'+i,d[0],d[1],i,'sim'));
-let loaded=null,busy=false,yt=null,msg='',P={pos:0,order:[],rep:0,shuf:false,vol:80,view:0,t:0,d:180,playing:false,started:false};
+let loaded=null,busy=false,yt=null,sp=null,msg='',P={lock:0,intro:false,prog:false,pos:0,order:[],rep:0,shuf:false,vol:80,view:0,t:0,d:180,playing:false,started:false};
 
 /* stars */
 for(let i=0;i<34;i++){const s=document.createElement('span');s.className='st';s.textContent='✦';s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*92}%;font-size:${8+Math.random()*12}px;animation-delay:${-Math.random()*3}s`;$('#room').append(s)}
@@ -138,10 +159,10 @@ let ac=null,mo=null;
 function A(){if(!ac)ac=new (window.AudioContext||window.webkitAudioContext)();return ac}
 function blip(f,d,ty='square',g=.06,at=0){try{const a=A(),o=a.createOscillator(),v=a.createGain();o.type=ty;o.frequency.value=f;v.gain.setValueAtTime(g,a.currentTime+at);v.gain.exponentialRampToValueAtTime(.001,a.currentTime+at+d);o.connect(v).connect(a.destination);o.start(a.currentTime+at);o.stop(a.currentTime+at+d)}catch(e){}}
 const sfx={btn:()=>blip(900,.04),chk:()=>blip(160,.06),clack:()=>{blip(300,.04);blip(120,.08,'square',.07,.06)}};
-function motor(on){try{if(on&&!mo){const a=A(),o=a.createOscillator(),v=a.createGain();o.type='sawtooth';o.frequency.value=52;v.gain.value=.012;o.connect(v).connect(a.destination);o.start();mo=o}else if(!on&&mo){mo.stop();mo=null}}catch(e){}}
+function motor(){}
 
 /* cd drawing */
-let K=1,left='spindle',pg=0,cust={};try{cust=JSON.parse(localStorage.getItem('pd.cust')||'{}')}catch(e){}
+let K=1,DS=220,left='spindle',pg=0,cust={};try{cust=JSON.parse(localStorage.getItem('pd.cust')||'{}')}catch(e){}
 const applyCust=()=>cds.forEach(c=>Object.assign(c,cust[c.id]||{}));
 const saveCust=c=>{cust[c.id]={color:c.color,ink:c.ink,home:c.home,doodle:c.doodle,label:c.label};try{localStorage.setItem('pd.cust',JSON.stringify(cust))}catch(e){}};
 const mins=c=>c.dur?' · '+Math.round(c.dur/60)+' min':'';
@@ -151,51 +172,57 @@ const visible=()=>cds.filter(c=>!c.out);
 function drawStack(){const st=$('#stack');st.innerHTML='';visible().slice(0,7).reverse().forEach((c,i,a)=>{const e=document.createElement('div');e.className='sd';e.dataset.id=c.id;e.style.setProperty('--c',c.color);e.title=c.name;if(c.ghost)e.style.visibility='hidden';if(i===a.length-1)e.onclick=()=>preview(c);st.append(e)})}
 function drawBook(){const g=$('#pg');g.innerHTML='';const v=visible(),n=Math.max(1,Math.ceil(v.length/4));pg=Math.min(pg,n-1);
  v.slice(pg*4,pg*4+4).forEach(c=>{const p=document.createElement('div');p.className='pk';p.dataset.id=c.id;p.onclick=()=>preview(c);const d=disc(c,76);if(c.ghost)d.style.visibility='hidden';p.append(d);g.append(p)});$('#pn').textContent=(pg+1)+' / '+n}
-const renderStack=()=>{$('#spin').style.display=left==='spindle'?'':'none';$('#book').classList.toggle('on',left==='book');drawStack();drawBook()};
-function renderTray(){const t=$('#tray');t.innerHTML='';if(loaded){const d=disc(loaded,160);d.classList.toggle('spin',P.playing);t.append(d)}}
-const rectOf=cd=>{const e=document.querySelector(left==='book'?`.pk[data-id="${cd.id}"]`:`.sd[data-id="${cd.id}"]`);return(e||$('#spin')).getBoundingClientRect()};
+function drawBox(){const g=$('#bxc');g.innerHTML='';visible().slice(0,14).forEach((c,i)=>{const e=document.createElement('div');e.className='bx';e.dataset.id=c.id;e.style.cssText=`left:${(i*57)%168}px;top:${(i*29)%46}px;--r:${(i*47)%50-25}deg;transform:rotate(var(--r));z-index:${i%3}`;if(c.ghost)e.style.visibility='hidden';e.onclick=()=>preview(c);e.append(disc(c,82));g.append(e)})}
+const renderStack=()=>{$('#spin').style.display=left==='spindle'?'':'none';$('#book').classList.toggle('on',left==='book');$('#box').classList.toggle('on',left==='box');drawStack();drawBook();drawBox()};
+function renderTray(){const t=$('#tray');t.innerHTML='';if(loaded){const d=disc(loaded,DS);d.classList.toggle('spin',P.playing);t.append(d)}}
+const rectOf=cd=>{const e=document.querySelector({book:'.pk',box:'.bx',spindle:'.sd'}[left]+`[data-id="${cd.id}"]`);return(e||$('#spin')).getBoundingClientRect()};
 
 /* fly a disc: rises out of its place, glides, drops into the next (s0/s1 = flatness at start/end) */
-async function fly(cd,a,b,s0,s1){const z=160*K,f=disc(cd,z);f.classList.add('fly');document.body.append(f);
+async function fly(cd,a,b,s0,s1){const z=DS*K,f=disc(cd,z);f.classList.add('fly');document.body.append(f);
  const p=(r,y,s)=>`translate(${r.left+r.width/2-z/2}px,${r.top+r.height/2-z/2+y*K}px) scale(1,${s})`;
  await f.animate([{transform:p(a,0,s0)},{transform:p(a,-110,1),offset:.3},{transform:p(b,-110,1),offset:.7},{transform:p(b,0,s1)}],{duration:1000,easing:'ease-in-out',fill:'forwards'}).finished;f.remove()}
 
 async function insert(cd){if(busy)return;busy=true;closeM();
  if(loaded)await eject(true);
  sfx.clack();$('#dm').classList.add('open');await wait(450);
- const from=rectOf(cd),s0=left==='book'?1:.16;cd.out=true;renderStack();
+ const from=rectOf(cd),s0=left==='spindle'?.16:1;cd.out=true;renderStack();
  await fly(cd,from,$('#tray').getBoundingClientRect(),s0,1);
  loaded=cd;P.started=false;P.t=0;buildOrder(0);renderTray();sfx.chk();await wait(250);
  $('#dm').classList.remove('open');sfx.clack();await wait(450);busy=false;play()}
 async function eject(keep){if(!loaded)return;const cd=loaded;stop();sfx.clack();$('#dm').classList.add('open');await wait(450);
  const a=$('#tray').getBoundingClientRect();loaded=null;renderTray();
  cd.out=false;cd.ghost=true;renderStack();const b=rectOf(cd);
- await fly(cd,a,b,1,left==='book'?1:.16);cd.ghost=false;renderStack();render();
+ await fly(cd,a,b,1,left==='spindle'?.16:1);cd.ghost=false;renderStack();render();
  if(!keep){await wait(150);$('#dm').classList.remove('open');sfx.clack()}}
 
 /* playback */
 const trk=()=>loaded&&loaded.tracks[P.order[P.pos]];
-function buildOrder(cur){const n=loaded.tracks.length;let o=[...Array(n).keys()];
+function buildOrder(cur){P.prog=false;const n=loaded.tracks.length;let o=[...Array(n).keys()];
  if(P.shuf){for(let i=n-1;i>0;i--){const j=Math.random()*(i+1)|0;[o[i],o[j]]=[o[j],o[i]]}o=[cur,...o.filter(x=>x!==cur)];P.pos=0}else P.pos=cur;P.order=o}
 const isYT=()=>loaded&&loaded.src==='yt'&&yt&&yt.loadVideoById;
-function startTrack(){const t=trk();P.t=0;P.d=(t&&t.dur)||180;P.started=true;if(isYT()&&t&&t.id){yt.loadVideoById(t.id);yt.setVolume(P.vol)}}
-function play(){if(!loaded){flash('NO DISC');return}if($('#dm').classList.contains('open')){flash('LID OPEN');return}if(!P.started)startTrack();else if(isYT())yt.playVideo();P.playing=true;motor(true);render()}
-function pause(){P.playing=false;if(isYT())yt.pauseVideo();motor(false);render()}
-function stop(){P.playing=false;P.started=false;P.t=0;if(isYT())yt.stopVideo();motor(false);render()}
+const isSP=()=>loaded&&loaded.src==='sp'&&sp&&sp.loadUri;
+function showEng(k){$('#ytw').style.display=k==='yt'?'':'none';$('#sp').style.display=k==='sp'?'':'none';if(k==='yt'&&sp&&sp.pause)sp.pause();if(k==='sp'&&yt&&yt.pauseVideo)yt.pauseVideo()}
+function startTrack(){const t=trk();P.t=0;P.d=(t&&t.dur)||180;P.started=true;P.lock=Date.now();if(loaded&&(loaded.src==='yt'||loaded.src==='sp'))showEng(loaded.src);
+ if(isYT()&&t&&t.id){yt.loadVideoById(t.id);yt.setVolume(P.vol)}else if(isSP()&&t&&t.id){sp.loadUri('spotify:track:'+t.id);setTimeout(()=>{try{sp.play()}catch(e){}},700)}}
+function play(){if(!loaded){flash('NO DISC');return}if($('#dm').classList.contains('open')){flash('LID OPEN');return}if(!P.started)startTrack();else if(isYT())yt.playVideo();else if(isSP())sp.resume();P.playing=true;motor(true);render()}
+function pause(){P.playing=false;if(isYT())yt.pauseVideo();else if(isSP())sp.pause();motor(false);render()}
+function stop(){P.playing=false;P.started=false;P.t=0;if(isYT())yt.stopVideo();else if(isSP())sp.pause();motor(false);render()}
 function go(d,auto){if(!loaded)return;const n=P.order.length;let p=P.pos+d;
  if(p>=n){if(auto&&P.rep!==2){stop();return}p=0}if(p<0)p=n-1;P.pos=p;startTrack();P.playing=true;motor(true);render()}
 function ended(){if(P.rep===1){startTrack();return}go(1,true)}
 setInterval(()=>{if(!loaded||!P.playing)return;
+ if(Date.now()-P.lock<1200){render();return}
  if(isYT()&&yt.getCurrentTime&&trk().id){P.t=yt.getCurrentTime()||0;P.d=yt.getDuration()||180}
- else{P.t+=.25;if(P.t>=P.d)ended()}render()},250);
+ else if(!isSP()){P.t+=.25;if(P.t>=P.d)ended()}
+ if(P.intro&&P.t>=10&&Date.now()-P.lock>1200)ended();render()},250);
 
 /* lcd */
 function flash(t){msg=t;render();setTimeout(()=>{msg='';render()},1400)}
 const f2=n=>String(n).padStart(2,'0'),fmt=s=>{s=Math.max(0,Math.floor(s||0));return f2(Math.floor(s/60))+':'+f2(s%60)};
 function render(){const t=trk();let a=!loaded?'NO DISC':[t&&t.artist,t&&t.title,fmt(P.t),'-'+fmt(P.d-P.t),'TRACK '+f2(P.pos+1)+'/'+f2(P.order.length),'VOL '+f2(Math.round(P.vol/10))][P.view];
- a=(msg||a||'').toUpperCase();const l=$('#l1');if(l.dataset.v!==a){l.dataset.v=a;l.innerHTML=`<span class="${a.length>13?'sc':''}">${esc(a)}</span>`}
- $('#l2').innerHTML=`<span>${P.playing?'▶':loaded&&P.started?'❚❚':'■'}</span><span>${['','REP 1','REP ALL'][P.rep]}</span><span>${P.shuf?'SHUF':''}</span>`;
- $('#brep').classList.toggle('on',P.rep>0);$('#bshuf').classList.toggle('on',P.shuf);
+ a=(msg||a||'').toUpperCase();const l=$('#l1');if(l.dataset.v!==a){l.dataset.v=a;l.innerHTML=`<span class="${a.length>($('#dm').classList.contains('portable')?8:13)?'sc':''}">${esc(a)}</span>`}
+ $('#l2').innerHTML=`<span>${P.playing?'▶':loaded&&P.started?'❚❚':'■'}</span><span>${['','R1','RA'][P.rep]}</span><span>${P.shuf?'SH':''}</span><span>${P.intro?'IN':''}</span><span>${P.prog?'PG':''}</span>`;
+ $('#brep').classList.toggle('on',P.rep>0);$('#bshuf').classList.toggle('on',P.shuf);$('#bintro').classList.toggle('on',P.intro);$('#bprog').classList.toggle('on',P.prog);
  const d=$('#tray .cd');if(d)d.classList.toggle('spin',P.playing);$('#laser').classList.toggle('on',P.playing)}
 
 /* buttons */
@@ -221,7 +248,10 @@ function act(a){switch(a){
  case 'bl':case 'br':pg=Math.max(0,pg+(a==='br'?1:-1));renderStack();$('#pg').animate([{transform:'rotateY(-60deg)',opacity:.3},{transform:'none',opacity:1}],250);break
  case 'dr1':$('#d1').classList.toggle('open');break
  case 'dr2':$('#d2').classList.toggle('open');break
- case 'swap':left=left==='spindle'?'book':'spindle';$('#bswap').textContent=left==='book'?'Put spindle back':'Put CD book on shelf';renderStack();break}
+ case 'swap':{const nx={spindle:'book',book:'box',box:'spindle'},nm={spindle:'spindle',book:'CD book',box:'CD box'};left=nx[left];$('#bswap').textContent='Swap: '+nm[nx[left]];renderStack();break}
+ case 'skin':setSkin($('#dm').classList.contains('portable')?'boombox':'portable');break
+ case 'intro':P.intro=!P.intro;break
+ case 'prog':progUI();break}
  render()}
 
 /* modals */
@@ -240,20 +270,33 @@ function custom(cd){modal(`<h2>Customize CD</h2><div id="pv"></div>
  $('#ok').onclick=()=>{saveCust(cd);renderStack();renderTray();preview(cd)}}
 function modal2(k){return({
  how:`<h2>How to use</h2><p>1. Tap Add YouTube and paste a channel @handle or a playlist link. Every public playlist becomes a CD.<br>2. Tap a CD (top of the spindle, or in the book), then Insert. Customize changes its colors and sharpie.<br>3. Drawers: stickers go anywhere (drag one back onto the drawers to put it away). The CD book can replace the spindle.<br>4. OPEN lifts the lid. Tap the disc to take it out.</p><button data-x>Got it</button>`,
- sp:`<h2>Spotify</h2><p>Spotify CDs arrive in the next phase.</p><button data-x>OK</button>`,
+ sp:`<h2>Add Spotify</h2><input id="q" placeholder="playlist or profile link"><button id="go">Make CDs</button><p id="st"></p><button data-x>Close</button>`,
  yt:`<h2>Add YouTube</h2><input id="q" placeholder="@channel or playlist link"><button id="go">Make CDs</button><p id="st"></p><button data-x>Close</button>`})[k]}
-function openM(k){modal(modal2(k));if(k==='yt')$('#go').onclick=()=>addYT($('#q').value)}
+function openM(k){modal(modal2(k));if(k==='yt'||k==='sp')$('#go').onclick=()=>addSrc(k,$('#q').value)}
 
-/* YouTube */
-async function addYT(q,quiet){const st=$('#st');if(!quiet&&st)st.textContent='Loading…';
- try{const r=await fetch('/api/youtube?q='+encodeURIComponent(q)),j=await r.json();if(!r.ok)throw new Error(j.error);
+/* Program mode: tap songs in the order you want */
+function progUI(){if(!loaded){flash('NO DISC');return}let seq=P.prog?[...P.order]:[];
+ const draw=()=>{modal(`<h2>Program</h2><p>Tap songs in the order you want.</p><div style="max-height:220px;overflow:auto;width:100%;text-align:left">${loaded.tracks.map((t,i)=>{const n=seq.indexOf(i);return `<div data-t="${i}" style="padding:3px 6px;cursor:pointer;${n>=0?'background:#ffd6ea;border-radius:8px':''}">${n>=0?(n+1)+'. ':'• '}${esc(t.title)}</div>`}).join('')}</div><div><button id="pc">Clear</button> <button id="pgo">Play</button> <button data-x>✕</button></div>`);
+  document.querySelectorAll('[data-t]').forEach(e=>e.onclick=()=>{const i=+e.dataset.t,n=seq.indexOf(i);n>=0?seq.splice(n,1):seq.push(i);draw()});
+  $('#pc').onclick=()=>{seq=[];if(P.prog)buildOrder(P.order[P.pos]||0);draw()};
+  $('#pgo').onclick=()=>{if(!seq.length)return;P.order=seq;P.pos=0;P.prog=true;P.shuf=false;closeM();startTrack();P.playing=true;motor(true);render()}};draw()}
+
+/* skins */
+const ANG={play:0,next:30,rep:60,shuf:90,intro:120,vp:150,open:180,vm:210,prog:240,disp:270,stop:300,prev:330};
+function setSkin(k){$('#dm').classList.remove('portable','boombox');$('#dm').classList.add(k);DS=k==='portable'?220:170;
+ document.querySelectorAll('.dm [data-a]').forEach(b=>{const a=ANG[b.dataset.a];b.style.transform=k==='portable'?`rotate(${a}deg) translateY(-140px) rotate(${-a}deg)`:''});
+ $('#bskin').textContent='Switch: '+(k==='portable'?'Boombox':'Portable');renderTray();render();try{localStorage.setItem('pd.skin',k)}catch(e){}}
+
+/* sources: YouTube and Spotify */
+async function addSrc(k,q,quiet){const st=$('#st');if(!quiet&&st)st.textContent='Loading…';
+ try{const r=await fetch('/api/'+(k==='sp'?'spotify':'youtube')+'?q='+encodeURIComponent(q)),j=await r.json();if(!r.ok)throw new Error(j.error);
   const have=new Set(cds.map(c=>c.id));
-  const n=j.cds.filter(c=>!have.has(c.id)).map((c,i)=>({...c,src:'yt',color:COL[(cds.length+i)%6]}));
+  const n=j.cds.filter(c=>!have.has(c.id)).map((c,i)=>({...c,src:k,color:COL[(cds.length+i)%6]}));
   if(n.length)cds=n.concat(cds.filter(c=>c.src!=='sim'||c===loaded));
-  applyCust();renderStack();if(!quiet){save(q);closeM()}}
+  applyCust();renderStack();if(!quiet){save(k+'|'+q);closeM()}}
  catch(e){if(!quiet&&st)st.textContent='Could not load: '+e.message}}
 function save(q){try{const s=JSON.parse(localStorage.getItem('pd.src')||'[]');if(!s.includes(q))s.push(q);localStorage.setItem('pd.src',JSON.stringify(s))}catch(e){}}
-try{JSON.parse(localStorage.getItem('pd.src')||'[]').forEach(q=>addYT(q,true))}catch(e){}
+try{JSON.parse(localStorage.getItem('pd.src')||'[]').forEach(x=>{const m=x.match(/^(yt|sp)\|(.*)$/);addSrc(m?m[1]:'yt',m?m[2]:x,true)})}catch(e){}
 
 /* YouTube player */
 const tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.append(tag);
@@ -269,7 +312,12 @@ function dragN(n,ev){const r=$('#room').getBoundingClientRect();
 /* fit the fixed room to the screen */
 function fit(){K=Math.min(innerWidth/1000,innerHeight/700);const r=$('#room');r.style.transform='scale('+K+')';r.style.left=(innerWidth-1000*K)/2+'px';r.style.top=(innerHeight-700*K)/2+'px'}
 addEventListener('resize',fit);fit();
-applyCust();renderStack();render();
+/* Spotify player (embed) */
+window.onSpotifyIframeApiReady=A=>{A.createController($('#spi'),{width:200,height:152},c=>{sp=c;c.addListener('playback_update',e=>{const d=e.data;if(!isSP())return;P.t=d.position/1000;P.d=d.duration/1000||P.d;
+ if(d.isPaused&&d.duration>0&&d.position>=d.duration-500&&P.playing&&Date.now()-P.lock>1500){P.lock=Date.now();ended()}})})};
+const st2=document.createElement('script');st2.src='https://open.spotify.com/embed/iframe-api/v1';st2.async=true;document.head.append(st2);
+let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}
+applyCust();renderStack();setSkin(sk);
 </script>
 </body>
 </html>
