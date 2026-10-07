@@ -34,6 +34,8 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 .cd::after{content:'';position:absolute;inset:43%;border-radius:50%;background:#ffeaf4;box-shadow:inset 0 0 0 2px #0002}
 .cd b{position:absolute;left:12%;right:12%;top:17%;text-align:center;line-height:1.05;font:400 1em 'Permanent Marker',cursive;color:var(--ink,#222);transform:rotate(-6deg);z-index:1}
 .cd i{position:absolute;left:0;right:0;bottom:17%;text-align:center;font:400 .8em 'Permanent Marker',cursive;color:var(--ink,#222);z-index:1}
+.cd svg{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}.cd text{font:7px 'Permanent Marker',cursive;fill:var(--ink,#222)}
+img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid #fff;background:#fff;cursor:pointer}
 .fly{position:fixed;left:0;top:0;z-index:50;pointer-events:none}
 /* spindle */
 .spindle{position:absolute;left:50px;bottom:140px;width:220px;height:270px}
@@ -57,13 +59,10 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 .dm.portable .row{display:contents}
 .dm.portable .row button{position:absolute;left:153px;top:153px;width:34px;height:34px;padding:0;border-radius:50%;font-size:9px;z-index:5;box-shadow:0 2px 0 #d7609b;background:linear-gradient(#fff,#ffb3d6)}
 .dm.portable .r1 button{font-size:14px}
-/* skin: boombox */
-.dm.boombox{left:280px;width:440px;height:385px;padding:12px 16px;border-radius:26px;background:linear-gradient(145deg,#ffe3f1,#ff9ad0 60%,#ff7ab8);box-shadow:0 6px 0 #d7609b,inset 0 0 0 3px #fff}
-.dm.boombox .well{width:184px;height:184px}
-.dm.boombox .r2{flex-wrap:wrap;gap:6px}
-.spk{display:none}
-.dm.boombox .spk{display:block;position:absolute;top:72px;left:14px;width:112px;height:112px;border-radius:50%;background:radial-gradient(circle,#444 0 8%,#222 9% 12%,#ddd 13% 15%,#555 16% 100%);box-shadow:inset 0 0 0 6px #fff9,0 3px 0 #0003}
-.dm.boombox .spk.r{left:auto;right:14px}
+.dm.classic{width:340px;height:392px;padding:16px;border-radius:44px 44px 30px 30px}
+.dm.classic .well{width:176px;height:176px}
+.dm.classic .lcd{margin:8px 0}
+.dm.classic .r2{flex-wrap:wrap;gap:6px}
 .dm.shake{animation:sh .12s}
 @keyframes sh{25%{transform:translate(-2px,1px)}75%{transform:translate(2px,-1px)}}
 .well{position:relative;width:176px;height:176px;margin:0 auto;border-radius:50%;background:#2b2f4a;display:grid;place-items:center;box-shadow:inset 0 0 14px #000}
@@ -118,10 +117,10 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 </head>
 <body>
 <div id="pan"><div id="room">
-  <div class="top"><button data-m="how">❔ How to use</button><button data-m="yt">▶ Add YouTube</button><button data-m="sp">♪ Add Spotify</button><button data-a="skin" id="bskin">Switch: Boombox</button></div>
+  <div class="top"><button data-m="how">❔ How to use</button><button data-m="yt">▶ Add YouTube</button><button data-m="sp">♪ Add Spotify</button><button data-a="skin" id="bskin">Switch: Classic</button></div>
   <div class="win"></div>
-  <div class="pos" style="left:320px;background:#9fd8ff;transform:rotate(-4deg)">✦</div>
-  <div class="pos" style="left:430px;background:#c9a6ff;transform:rotate(3deg)">♡</div>
+  <img class="pos" src="posters/shakira.jpg" alt="Poster" style="left:335px;top:40px;transform:rotate(-4deg)" onclick="showPoster(this.src)">
+  <img class="pos" src="posters/nsync.jpg" alt="Poster" style="left:450px;top:42px;transform:rotate(3deg)" onclick="showPoster(this.src)">
   <div class="tv">little tv<div id="ytw"><div id="yt"></div></div><div id="sp" style="display:none"><div id="spi"></div></div></div>
 
   <div class="spindle" id="spin"><div class="arrows"><button data-a="sl" aria-label="Previous CD">⏪</button><button data-a="sr" aria-label="Next CD">⏩</button></div><div class="pole"></div><div class="stack" id="stack"></div></div>
@@ -129,7 +128,7 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
   <div class="box" id="box"><div id="bxc"></div><div class="bf">CDs 💿</div></div>
 
   <div class="dm portable" id="dm">
-    <i class="spk"></i><i class="spk r"></i><div class="well"><div class="tray" id="tray"></div><div class="laser" id="laser"></div><div class="lid"></div></div>
+    <div class="well"><div class="tray" id="tray"></div><div class="laser" id="laser"></div><div class="lid"></div></div>
     <div class="lcd"><div class="scr"><div id="l1"></div><div id="l2"></div></div></div>
     <div class="row r1"><button data-a="prev" aria-label="Previous track">⏮</button><button data-a="play" aria-label="Play or pause">⏯</button><button data-a="stop" aria-label="Stop">⏹</button><button data-a="next" aria-label="Next track">⏭</button></div>
     <div class="row r2"><button data-a="disp">DISP</button><button data-a="rep" id="brep">REP</button><button data-a="shuf" id="bshuf">SHUF</button><button data-a="vm">VOL−</button><button data-a="vp">VOL+</button><button data-a="open">OPEN</button><button data-a="intro" id="bintro">INTRO</button><button data-a="prog" id="bprog">PROG</button></div>
@@ -139,7 +138,7 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
   <div class="heart" aria-hidden="true">♥</div>
   <div class="deco" style="left:915px">✨</div>
   <div class="board"></div>
-  <div class="cab"><div class="dr" id="d1"><button class="nm" data-a="dr1">drawer</button><div class="in" id="stk"></div></div><div class="dr" id="d2"><button class="nm" data-a="dr2">drawer</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD book</button></div></div></div>
+  <div class="cab"><div class="dr" id="d2"><button class="nm" data-a="dr2">CDs</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD book</button></div></div><div class="dr" id="d1"><button class="nm" data-a="dr1">stickers</button><div class="in" id="stk"></div></div></div>
 </div></div>
 <div id="modal"></div><div id="rot">Turn your iPad sideways 🔄</div>
 
@@ -166,8 +165,14 @@ let K=1,DS=220,left='spindle',pg=0,cust={};try{cust=JSON.parse(localStorage.getI
 const applyCust=()=>cds.forEach(c=>Object.assign(c,cust[c.id]||{}));
 const saveCust=c=>{cust[c.id]={color:c.color,ink:c.ink,home:c.home,doodle:c.doodle,label:c.label};try{localStorage.setItem('pd.cust',JSON.stringify(cust))}catch(e){}};
 const mins=c=>c.dur?' · '+Math.round(c.dur/60)+' min':'';
+let U=0;
+function arcText(name,cnt){const id='t'+(U++);let l1='',l2='';
+ name.split(' ').forEach(w=>{if(!l2&&(l1+' '+w).trim().length<=20)l1=(l1+' '+w).trim();else l2=(l2+' '+w).trim()});
+ if(!l1){l1=name.slice(0,20);l2=name.slice(20)}
+ const cut=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t,tp=(i,t)=>`<text><textPath href="#${id}${i}" startOffset="50%" text-anchor="middle">${esc(t)}</textPath></text>`;
+ return `<svg viewBox="0 0 100 100"><defs><path id="${id}a" d="M12,50 A38,38 0 0 1 88,50"/><path id="${id}b" d="M21,50 A29,29 0 0 1 79,50"/><path id="${id}c" d="M16,50 A34,34 0 0 0 84,50"/></defs>${tp('a',cut(l1,22))}${l2?tp('b',cut(l2,18)):''}${tp('c',cnt)}</svg>`}
 function disc(cd,sz){const d=document.createElement('div'),h=!cd.cover||cd.home;d.className='cd'+(h?' home':'');d.style.setProperty('--s',sz+'px');d.style.setProperty('--c',cd.color);d.style.setProperty('--ink',cd.ink||'#222222');
- if(!h)d.style.backgroundImage=`url(${cd.cover})`;else d.innerHTML=`<u class="${cd.doodle||''}"></u><b>${esc(cd.label||cd.name)}</b><i>${cd.count} songs${mins(cd)}</i>`;return d}
+ if(!h)d.style.backgroundImage=`url(${cd.cover})`;else d.innerHTML=`<u class="${cd.doodle||''}"></u>${arcText(cd.label||cd.name,cd.count+' songs'+mins(cd))}`;return d}
 const visible=()=>cds.filter(c=>!c.out);
 function drawStack(){const st=$('#stack');st.innerHTML='';visible().slice(0,7).reverse().forEach((c,i,a)=>{const e=document.createElement('div');e.className='sd';e.dataset.id=c.id;e.style.setProperty('--c',c.color);e.title=c.name;if(c.ghost)e.style.visibility='hidden';if(i===a.length-1)e.onclick=()=>preview(c);st.append(e)})}
 function drawBook(){const g=$('#pg');g.innerHTML='';const v=visible(),n=Math.max(1,Math.ceil(v.length/4));pg=Math.min(pg,n-1);
@@ -249,11 +254,12 @@ function act(a){switch(a){
  case 'dr1':$('#d1').classList.toggle('open');break
  case 'dr2':$('#d2').classList.toggle('open');break
  case 'swap':{const nx={spindle:'book',book:'box',box:'spindle'},nm={spindle:'spindle',book:'CD book',box:'CD box'};left=nx[left];$('#bswap').textContent='Swap: '+nm[nx[left]];renderStack();break}
- case 'skin':setSkin($('#dm').classList.contains('portable')?'boombox':'portable');break
+ case 'skin':setSkin($('#dm').classList.contains('portable')?'classic':'portable');break
  case 'intro':P.intro=!P.intro;break
  case 'prog':progUI();break}
  render()}
 
+function showPoster(u){modal(`<img src="${u}" alt="Poster" style="max-width:100%;max-height:68vh;border-radius:10px"><button data-x>Close</button>`)}
 /* modals */
 const modal=h=>{const M=$('#modal');M.innerHTML='<div class="card">'+h+'</div>';M.classList.add('on')},closeM=()=>$('#modal').classList.remove('on');
 function preview(cd){modal(`<h2>${esc(cd.label||cd.name)}</h2><div id="pv"></div><p>${cd.count} songs${mins(cd)}</p><div><button id="ins">Insert</button> <button id="cu">Customize</button> <button data-x>✕</button></div>`);
@@ -283,9 +289,9 @@ function progUI(){if(!loaded){flash('NO DISC');return}let seq=P.prog?[...P.order
 
 /* skins */
 const ANG={play:0,next:30,rep:60,shuf:90,intro:120,vp:150,open:180,vm:210,prog:240,disp:270,stop:300,prev:330};
-function setSkin(k){$('#dm').classList.remove('portable','boombox');$('#dm').classList.add(k);DS=k==='portable'?220:170;
+function setSkin(k){$('#dm').classList.remove('portable','classic');$('#dm').classList.add(k);DS=k==='portable'?220:160;
  document.querySelectorAll('.dm [data-a]').forEach(b=>{const a=ANG[b.dataset.a];b.style.transform=k==='portable'?`rotate(${a}deg) translateY(-140px) rotate(${-a}deg)`:''});
- $('#bskin').textContent='Switch: '+(k==='portable'?'Boombox':'Portable');renderTray();render();try{localStorage.setItem('pd.skin',k)}catch(e){}}
+ $('#bskin').textContent='Switch: '+(k==='portable'?'Classic':'Round');renderTray();render();try{localStorage.setItem('pd.skin',k)}catch(e){}}
 
 /* sources: YouTube and Spotify */
 async function addSrc(k,q,quiet){const st=$('#st');if(!quiet&&st)st.textContent='Loading…';
@@ -316,7 +322,7 @@ addEventListener('resize',fit);fit();
 window.onSpotifyIframeApiReady=A=>{A.createController($('#spi'),{width:200,height:152},c=>{sp=c;c.addListener('playback_update',e=>{const d=e.data;if(!isSP())return;P.t=d.position/1000;P.d=d.duration/1000||P.d;
  if(d.isPaused&&d.duration>0&&d.position>=d.duration-500&&P.playing&&Date.now()-P.lock>1500){P.lock=Date.now();ended()}})})};
 const st2=document.createElement('script');st2.src='https://open.spotify.com/embed/iframe-api/v1';st2.async=true;document.head.append(st2);
-let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}
+let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}if(sk!=='portable')sk='classic';
 applyCust();renderStack();setSkin(sk);
 </script>
 </body>
