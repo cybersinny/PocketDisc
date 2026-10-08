@@ -70,7 +70,7 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 .polly b{position:absolute;left:0;bottom:0;width:104px;height:50px;border-radius:50%;background:linear-gradient(#ffd6ea,#ff9ad0);box-shadow:0 3px 0 #d7609b}
 .polly u{position:absolute;left:26px;bottom:14px;width:52px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#9fd8ff 55%,#c9a6ff)}
 .polly s{position:absolute;left:38px;bottom:26px;font-size:28px;text-decoration:none}
-#hp{display:none;position:absolute;left:672px;bottom:138px;width:96px;height:44px;pointer-events:none}.dm.portable~#hp{display:block}
+#hp{display:none;position:absolute;left:640px;bottom:140px;width:130px;height:180px;pointer-events:none}.dm.portable~#hp{display:block}
 .fly{position:fixed;left:0;top:0;z-index:50;pointer-events:none}
 /* spindle */
 .spindle{position:absolute;left:50px;bottom:140px;width:220px;height:270px}
@@ -169,7 +169,11 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
     <div class="row r2"><button data-a="disp">DISP</button><button data-a="rep" id="brep">REP</button><button data-a="shuf" id="bshuf">SHUF</button><button data-a="vm">VOL−</button><button data-a="vp">VOL+</button><button data-a="open">OPEN</button><button data-a="intro" id="bintro">INTRO</button><button data-a="prog" id="bprog">PROG</button></div>
   </div>
 
-  <svg id="hp" viewBox="0 0 96 44" fill="none" stroke-linecap="round" aria-hidden="true"><defs><g id="hpw"><path d="M0,36 C8,30 12,42 20,36"/><ellipse cx="34" cy="28" rx="15" ry="9"/><ellipse cx="34" cy="28" rx="11" ry="6.2"/><ellipse cx="34" cy="28" rx="7" ry="3.6"/><path d="M49,28 C54,28 56,24 62,24"/><path d="M62,24 C70,22 74,14 80,12"/><path d="M62,24 C70,26 76,34 82,34"/></g></defs><use href="#hpw" stroke="#bda9b6" stroke-width="3.6"/><use href="#hpw" stroke="#fff" stroke-width="2.2"/><g fill="#fff" stroke="#bda9b6" stroke-width="1.2"><circle cx="62" cy="24" r="2.4"/><ellipse cx="85" cy="11" rx="6" ry="5"/><rect x="89" y="9" width="4" height="10" rx="2"/><ellipse cx="87" cy="33" rx="6" ry="5"/><rect x="91" y="31" width="4" height="10" rx="2"/></g></svg>
+  <svg id="hp" viewBox="0 0 130 180" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><g id="eb"><rect x="-2" y="2" width="4" height="13" rx="2" fill="#fff"/><ellipse rx="6.5" ry="5.5" fill="#fff"/><circle cy="-.5" r="2.2" fill="#d9d0d6" stroke="none"/></g></defs>
+<g stroke="#bda9b6" stroke-width="4"><path d="M28,10 C46,10 52,30 50,56 C48,90 36,120 54,140 C70,158 112,162 108,138"/></g><g stroke="#fff" stroke-width="2.4"><path d="M28,10 C46,10 52,30 50,56 C48,90 36,120 54,140 C70,158 112,162 108,138"/></g>
+<g stroke="#bda9b6" stroke-width="4"><path d="M108,138 C104,116 66,116 56,134 C50,148 52,170 76,174 L80,172"/><path d="M80,172 C62,180 44,176 30,168"/><path d="M80,172 C90,177 98,176 106,171"/></g><g stroke="#fff" stroke-width="2.4"><path d="M108,138 C104,116 66,116 56,134 C50,148 52,170 76,174 L80,172"/><path d="M80,172 C62,180 44,176 30,168"/><path d="M80,172 C90,177 98,176 106,171"/></g>
+<rect x="22" y="5" width="9" height="10" rx="2.5" fill="#fff" stroke="#bda9b6" stroke-width="1.2"/><circle cx="80" cy="172" r="2.4" fill="#fff" stroke="#bda9b6" stroke-width="1.2"/>
+<g stroke="#bda9b6" stroke-width="1.2"><use href="#eb" transform="translate(15,168) rotate(-90)"/><use href="#eb" transform="translate(121,171) rotate(90)"/></g></svg>
   <div class="slot" style="left:770px;width:200px"></div>
   <div class="board"></div>
   <div class="cab"><div class="dr" id="d2"><button class="nm" data-a="dr2">CDs</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD box</button></div></div><div class="dr" id="d3"><button class="nm" data-a="dr3">decor</button><div class="in" id="dcs"></div></div><div class="dr" id="d1"><button class="nm" data-a="dr1">stickers</button><div class="in" id="stk"></div></div></div>
