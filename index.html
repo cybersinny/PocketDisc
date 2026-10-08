@@ -204,7 +204,7 @@ function arcText(name,cnt){const id='t'+(U++);let l1='',l2='';
  const cut=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t,tp=(i,t)=>`<text><textPath href="#${id}${i}" startOffset="50%" text-anchor="middle">${esc(t)}</textPath></text>`;
  return `<svg viewBox="0 0 100 100"><defs><path id="${id}a" d="M12,50 A38,38 0 0 1 88,50"/><path id="${id}b" d="M21,50 A29,29 0 0 1 79,50"/><path id="${id}c" d="M16,50 A34,34 0 0 0 84,50"/></defs>${tp('a',cut(l1,22))}${l2?tp('b',cut(l2,18)):''}${tp('c',cnt)}</svg>`}
 function disc(cd,sz){const d=document.createElement('div'),h=!cd.cover||cd.home;d.className='cd'+(h?' home':'');d.style.setProperty('--s',sz+'px');d.style.setProperty('--c',cd.color);d.style.setProperty('--ink',cd.ink||'#222222');
- if(!h)d.style.backgroundImage=`url(${cd.cover})`;else d.innerHTML=`<u class="${cd.doodle||''}"></u>${arcText(cd.label||cd.name,cd.count+' songs'+mins(cd))}`;return d}
+ if(!h)d.style.backgroundImage=`url(${cd.cover})`;else d.innerHTML=`<u class="${cd.doodle||''}"></u>${arcText(cd.label||cd.name,cd.count?cd.count+' songs'+mins(cd):'Spotify playlist')}`;return d}
 const visible=()=>cds.filter(c=>!c.out);
 function drawStack(){const st=$('#stack');st.innerHTML='';visible().slice(0,7).reverse().forEach((c,i,a)=>{const e=document.createElement('div');e.className='sd';e.dataset.id=c.id;e.style.setProperty('--c',c.color);e.title=c.name;if(c.ghost)e.style.visibility='hidden';if(i===a.length-1)e.onclick=()=>preview(c);st.append(e)})}
 function drawBook(){const g=$('#pg');g.innerHTML='';const v=visible(),n=Math.max(1,Math.ceil(v.length/4));pg=Math.min(pg,n-1);
@@ -240,18 +240,18 @@ const isYT=()=>loaded&&loaded.src==='yt'&&yt&&yt.loadVideoById;
 const isSP=()=>loaded&&loaded.src==='sp'&&sp&&sp.loadUri;
 function showEng(k){$('#ytw').style.display=k==='yt'?'':'none';$('#sp').style.display=k==='sp'?'':'none';if(k==='yt'&&sp&&sp.pause)sp.pause();if(k==='sp'&&yt&&yt.pauseVideo)yt.pauseVideo()}
 function startTrack(){const t=trk();P.t=0;P.d=(t&&t.dur)||180;P.started=true;P.lock=Date.now();if(loaded&&(loaded.src==='yt'||loaded.src==='sp'))showEng(loaded.src);
- if(isYT()&&t&&t.id){yt.loadVideoById(t.id);yt.setVolume(P.vol)}else if(isSP()&&t&&t.id){sp.loadUri('spotify:track:'+t.id);setTimeout(()=>{try{sp.play()}catch(e){}},700)}}
+ if(isYT()&&t&&t.id){yt.loadVideoById(t.id);yt.setVolume(P.vol)}else if(isSP()&&t&&t.id){sp.loadUri(t.uri||'spotify:track:'+t.id);setTimeout(()=>{try{sp.play()}catch(e){}},700)}}
 function play(){if(!loaded){flash('NO DISC');return}if($('#dm').classList.contains('open')){flash('LID OPEN');return}if(!P.started)startTrack();else if(isYT())yt.playVideo();else if(isSP())sp.resume();P.playing=true;motor(true);render()}
 function pause(){P.playing=false;if(isYT())yt.pauseVideo();else if(isSP())sp.pause();motor(false);render()}
 function stop(){P.playing=false;P.started=false;P.t=0;if(isYT())yt.stopVideo();else if(isSP())sp.pause();motor(false);render()}
-function go(d,auto){if(!loaded)return;const n=P.order.length;let p=P.pos+d;
+function go(d,auto){if(!loaded)return;if(loaded.embed){flash('USE POCKET TV');return}const n=P.order.length;let p=P.pos+d;
  if(p>=n){if(auto&&P.rep!==2){stop();return}p=0}if(p<0)p=n-1;P.pos=p;startTrack();P.playing=true;motor(true);render()}
 function ended(){if(P.rep===1){startTrack();return}go(1,true)}
 setInterval(()=>{if(!loaded||!P.playing)return;
  if(Date.now()-P.lock<1200){render();return}
  if(isYT()&&yt.getCurrentTime&&trk().id){P.t=yt.getCurrentTime()||0;P.d=yt.getDuration()||180}
  else if(!isSP()){P.t+=.25;if(P.t>=P.d)ended()}
- if(P.intro&&P.t>=10&&Date.now()-P.lock>1200)ended();render()},250);
+ if(P.intro&&P.t>=10&&!loaded.embed&&Date.now()-P.lock>1200)ended();render()},250);
 
 /* lcd */
 function flash(t){msg=t;render();setTimeout(()=>{msg='';render()},1400)}
@@ -276,7 +276,7 @@ function act(a){switch(a){
  case 'play':P.playing?pause():play();break;
  case 'stop':stop();break;
  case 'next':go(1);break;
- case 'prev':P.t>3?startTrack():go(-1);break;
+ case 'prev':P.t>3&&!(loaded&&loaded.embed)?startTrack():go(-1);break;
  case 'disp':P.view=(P.view+1)%6;break;
  case 'rep':P.rep=(P.rep+1)%3;break;
  case 'shuf':P.shuf=!P.shuf;if(loaded)buildOrder(P.order[P.pos]||0);break;
@@ -295,7 +295,7 @@ function act(a){switch(a){
 function showPoster(u){modal(`<img src="${u}" alt="Poster" style="max-width:100%;max-height:68vh;border-radius:10px"><button data-x>Close</button>`)}
 /* modals */
 const modal=h=>{const M=$('#modal');M.innerHTML='<div class="card">'+h+'</div>';M.classList.add('on')},closeM=()=>$('#modal').classList.remove('on');
-function preview(cd){modal(`<h2>${esc(cd.label||cd.name)}</h2><div id="pv"></div><p>${cd.count} songs${mins(cd)}</p><div><button id="ins">Insert</button> <button id="cu">Customize</button> <button data-x>✕</button></div>`);
+function preview(cd){modal(`<h2>${esc(cd.label||cd.name)}</h2><div id="pv"></div><p>${cd.count?cd.count+' songs'+mins(cd):'Spotify playlist'}</p><div><button id="ins">Insert</button> <button id="cu">Customize</button> <button data-x>✕</button></div>`);
  $('#pv').append(disc(cd,200));$('#ins').onclick=()=>insert(cd);$('#cu').onclick=()=>custom(cd)}
 function custom(cd){modal(`<h2>Customize CD</h2><div id="pv"></div>
  <label>Name <input id="cn" value="${esc(cd.label||cd.name)}"></label>
@@ -309,7 +309,7 @@ function custom(cd){modal(`<h2>Customize CD</h2><div id="pv"></div>
  $('#ok').onclick=()=>{saveCust(cd);renderStack();renderTray();preview(cd)}}
 function modal2(k){return({
  how:`<h2>How to use</h2><p>1. Tap Add YouTube and paste a channel @handle or a playlist link. Every public playlist becomes a CD.<br>2. Tap a CD (top of the spindle, or in the book), then Insert. Customize changes its colors and sharpie.<br>3. Drawers: stickers go anywhere (drag one back onto the drawers to put it away). The CD book can replace the spindle.<br>4. OPEN lifts the lid. Tap the disc to take it out.</p><button data-x>Got it</button>`,
- sp:`<h2>Add Spotify</h2><input id="q" placeholder="playlist or profile link"><button id="go">Make CDs</button><p id="st"></p><button data-x>Close</button>`,
+ sp:`<h2>Add Spotify</h2><input id="q" placeholder="paste playlist link(s)"><button id="go">Make CDs</button><p id="st"></p><button data-x>Close</button>`,
  yt:`<h2>Add YouTube</h2><input id="q" placeholder="@channel or playlist link"><button id="go">Make CDs</button><p id="st"></p><button data-x>Close</button>`})[k]}
 function openM(k){modal(modal2(k));if(k==='yt'||k==='sp')$('#go').onclick=()=>addSrc(k,$('#q').value)}
 
@@ -366,7 +366,7 @@ function initDec(){document.querySelectorAll('.slot').forEach((el,i)=>el.onclick
 
 /* Spotify player (embed) */
 window.onSpotifyIframeApiReady=A=>{A.createController($('#spi'),{width:200,height:152},c=>{sp=c;c.addListener('playback_update',e=>{const d=e.data;if(!isSP())return;P.t=d.position/1000;P.d=d.duration/1000||P.d;
- if(d.isPaused&&d.duration>0&&d.position>=d.duration-500&&P.playing&&Date.now()-P.lock>1500){P.lock=Date.now();ended()}})})};
+ if(d.isPaused&&d.duration>0&&d.position>=d.duration-500&&P.playing&&!loaded.embed&&Date.now()-P.lock>1500){P.lock=Date.now();ended()}})})};
 const st2=document.createElement('script');st2.src='https://open.spotify.com/embed/iframe-api/v1';st2.async=true;document.head.append(st2);
 let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}if(sk!=='portable')sk='classic';
 applyCust();renderStack();setSkin(sk);initDec();
