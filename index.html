@@ -25,7 +25,7 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 #yt{width:200px;height:200px;background:#222;border-radius:8px;overflow:hidden}
 .board{position:absolute;left:20px;right:20px;bottom:116px;height:24px;background:linear-gradient(#fff,#ffb3d6);border-radius:6px;box-shadow:0 4px 0 #d77fae}
 .cab{position:absolute;left:20px;right:20px;bottom:0;height:116px;display:flex;gap:10px;padding:14px;background:#ffe3f1;border-radius:0 0 10px 10px;box-shadow:inset 0 0 0 3px #fff}
-.dr{flex:1;background:#fff5fa;border:3px solid #ffb3d6;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:3;transition:transform .3s,box-shadow .3s}.dr.open{transform:translateY(-26px) scale(1.03);box-shadow:0 10px 0 #d77fae;background:#fff}.nm{font:inherit;font-size:15px;border:0;background:none;cursor:pointer;color:var(--ink)}.dr .in{display:none;gap:8px;align-items:center;justify-content:center}.dr.open .in{display:flex}.stk{font-size:34px;cursor:grab;touch-action:none;user-select:none}.placed{position:absolute;font-size:44px;cursor:grab;touch-action:none;z-index:6;user-select:none}
+.dr{flex:1;background:#fff5fa;border:3px solid #ffb3d6;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:3;transition:transform .3s,box-shadow .3s}.dr.open{transform:translateY(-26px) scale(1.03);box-shadow:0 10px 0 #d77fae;background:#fff}.nm{font:inherit;font-size:15px;border:0;background:none;cursor:pointer;color:var(--ink)}.dr .in{display:none;gap:5px;align-items:center;justify-content:center}.dr.open .in{display:flex}.stk{font-size:26px;cursor:grab;touch-action:none;user-select:none}.placed{position:absolute;font-size:44px;cursor:grab;touch-action:none;z-index:6;user-select:none}
 /* discs */
 .cd{--s:160px;width:var(--s);height:var(--s);border-radius:50%;position:relative;flex:none;font-size:calc(var(--s)/11);
  background:conic-gradient(#eee,#aaa,#fff,#bbb,#eee,#ccc,#fff,#aaa,#eee);background-size:cover;box-shadow:0 2px 6px #0004}
@@ -36,6 +36,40 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 .cd i{position:absolute;left:0;right:0;bottom:17%;text-align:center;font:400 .8em 'Permanent Marker',cursive;color:var(--ink,#222);z-index:1}
 .cd svg{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}.cd text{font:7px 'Permanent Marker',cursive;fill:var(--ink,#222)}
 img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid #fff;background:#fff;cursor:pointer}
+/* decorations */
+.it{position:relative;display:block}
+.slot{position:absolute;bottom:140px;display:flex;align-items:flex-end;justify-content:center;cursor:pointer;transition:filter .2s}
+.slot:hover{filter:drop-shadow(0 0 8px #fff)}.slot.sel{filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 5px #ff7ab8)}
+.slot.pop .it{animation:pop .4s}@keyframes pop{50%{transform:scale(1.15) rotate(4deg)}}
+.mini{position:relative;width:32px;height:46px;flex:none;cursor:pointer;overflow:hidden}.mini.on{opacity:.4}.mini *{pointer-events:none}
+.mini>.it{position:absolute;left:0;bottom:0;transform-origin:0 100%}
+.tama{width:68px;height:84px;border-radius:50% 50% 46% 46%/58% 58% 42% 42%;background:linear-gradient(145deg,#d6f0ff,#8fc8ff);box-shadow:0 3px 0 #5c9ad6,inset 0 0 0 3px #fff9}
+.tama b{position:absolute;left:14px;top:16px;width:40px;height:32px;border-radius:6px;background:#b9cba2;box-shadow:inset 0 2px 4px #0005;font:18px/32px 'VT323',monospace;text-align:center;color:#25361a}
+.tama i{position:absolute;bottom:12px;width:10px;height:10px;border-radius:50%;background:#ff7ab8}
+.tama i:nth-of-type(1){left:15px}.tama i:nth-of-type(2){left:29px}.tama i:nth-of-type(3){left:43px}
+.gbc{width:90px;height:140px;border-radius:8px 8px 24px 8px;background:linear-gradient(145deg,#d9b8ff,#9b6ee0);box-shadow:0 3px 0 #6b43b0,inset 0 0 0 3px #ffffff80}
+.gbc b{position:absolute;left:12px;top:12px;width:66px;height:54px;border-radius:5px 5px 14px 5px;background:#3d3a52}
+.gbc b::after{content:'';position:absolute;left:11px;top:9px;width:44px;height:36px;background:#9bbc7a}
+.gbc i{position:absolute;width:14px;height:14px;border-radius:50%;background:#ff7ab8}
+.gbc i:nth-of-type(1){left:12px;top:84px;width:30px;height:30px;border-radius:6px;background:#2d2540}.gbc i:nth-of-type(2){left:62px;top:84px}.gbc i:nth-of-type(3){left:48px;top:100px}
+.furby{width:84px;height:86px;margin-top:18px;border-radius:50% 50% 44% 44%;background:radial-gradient(circle at 50% 62%,#fff 0 26%,#c9a6ff 27%);box-shadow:0 3px 0 #8d68c8}
+.furby::before,.furby::after{content:'';position:absolute;top:-18px;width:22px;height:34px;border-radius:50% 50% 10% 10%;background:#c9a6ff}
+.furby::before{left:10px;transform:rotate(-12deg)}.furby::after{right:10px;transform:rotate(12deg)}
+.furby b{position:absolute;top:20px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px #0002}
+.furby b::after{content:'';position:absolute;left:8px;top:8px;width:9px;height:9px;border-radius:50%;background:#222}
+.furby b:nth-of-type(1){left:10px}.furby b:nth-of-type(2){right:10px}
+.furby i{position:absolute;left:34px;top:46px;width:16px;height:12px;background:#ffb347;clip-path:polygon(0 0,100% 0,50% 100%)}
+.glass{width:104px;height:44px}
+.glass b{position:absolute;top:0;width:44px;height:44px;border-radius:50%;border:4px solid #ffb3d6;background:#ffffff40;box-shadow:inset 0 0 8px #fff9}
+.glass b:nth-of-type(1){left:0}.glass b:nth-of-type(2){right:0}.glass i{position:absolute;left:42px;top:14px;width:20px;height:5px;border-radius:3px;background:#ffb3d6}
+.nokia{width:56px;height:116px;border-radius:14px 14px 20px 20px;background:linear-gradient(#8fa4cc,#566b96);box-shadow:0 3px 0 #3a4a6e}
+.nokia b{position:absolute;left:8px;top:14px;width:40px;height:32px;border-radius:3px;background:#b9cba2;box-shadow:inset 0 2px 4px #0006}
+.nokia u{position:absolute;left:8px;top:56px;width:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.nokia u i{display:block;height:7px;border-radius:3px;background:#dfe8ff}
+.polly{width:104px;height:92px}
+.polly i{position:absolute;left:8px;top:0;width:88px;height:64px;border-radius:50% 50% 8px 8px;background:linear-gradient(#fff,#ffc4df);box-shadow:inset 0 0 0 4px #ff9ad0}
+.polly b{position:absolute;left:0;bottom:0;width:104px;height:50px;border-radius:50%;background:linear-gradient(#ffd6ea,#ff9ad0);box-shadow:0 3px 0 #d7609b}
+.polly u{position:absolute;left:26px;bottom:14px;width:52px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#9fd8ff 55%,#c9a6ff)}
+.polly s{position:absolute;left:38px;bottom:26px;font-size:28px;text-decoration:none}
 .fly{position:fixed;left:0;top:0;z-index:50;pointer-events:none}
 /* spindle */
 .spindle{position:absolute;left:50px;bottom:140px;width:220px;height:270px}
@@ -86,14 +120,14 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 .r2 button{padding:2px 9px;border-radius:99px;background:linear-gradient(#fff,#d6e4ff);font-size:13px}
 .r2 button.on{background:linear-gradient(#fff,#ff9ad0)}
 /* decor */
-.lamp{position:absolute;left:720px;bottom:140px;width:70px;height:210px}
+.lamp{position:relative;width:70px;height:210px}
 .lamp .g{position:absolute;top:0;left:0;right:0;bottom:30px;clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);background:linear-gradient(#ff9ad0,#c9a6ff);overflow:hidden}
 .lamp .g i{position:absolute;left:30%;width:26px;height:26px;border-radius:50%;background:#ffe38a;animation:lv 7s ease-in-out infinite alternate;bottom:0}
 .lamp .g i:nth-child(2){left:45%;width:18px;height:18px;animation-duration:5s;animation-delay:-2s}
 .lamp .g i:nth-child(3){left:20%;width:22px;height:22px;animation-duration:9s;animation-delay:-4s}
 @keyframes lv{to{transform:translateY(-140px) scale(1.3)}}
 .lamp .base{position:absolute;bottom:0;left:-4px;right:-4px;height:34px;border-radius:8px 8px 4px 4px;background:linear-gradient(#e6e6f5,#9aa)}
-.heart{position:absolute;left:830px;bottom:140px;font-size:110px;line-height:1;color:var(--hot);text-shadow:inset 0 0 0 #fff,0 0 14px #ffb3d6;filter:drop-shadow(0 6px 0 #d7609b)}
+.heart{position:relative;width:84px;height:84px;font-size:84px;line-height:1;color:var(--hot);text-shadow:inset 0 0 0 #fff,0 0 14px #ffb3d6;filter:drop-shadow(0 6px 0 #d7609b)}
 .deco{position:absolute;bottom:140px;font-size:46px}
 /* modal */
 #modal{position:fixed;inset:0;background:#5a2a4955;display:none;place-items:center;z-index:60}
@@ -121,7 +155,7 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
   <div class="win"></div>
   <img class="pos" src="posters/shakira.jpg" alt="Poster" style="left:335px;top:40px;transform:rotate(-4deg)" onclick="showPoster(this.src)">
   <img class="pos" src="posters/nsync.jpg" alt="Poster" style="left:450px;top:42px;transform:rotate(3deg)" onclick="showPoster(this.src)">
-  <div class="tv">little tv<div id="ytw"><div id="yt"></div></div><div id="sp" style="display:none"><div id="spi"></div></div></div>
+  <div class="tv">pocket tv<div id="ytw"><div id="yt"></div></div><div id="sp" style="display:none"><div id="spi"></div></div></div>
 
   <div class="spindle" id="spin"><div class="arrows"><button data-a="sl" aria-label="Previous CD">⏪</button><button data-a="sr" aria-label="Next CD">⏩</button></div><div class="pole"></div><div class="stack" id="stack"></div></div>
   <div class="book" id="book"><div class="pg" id="pg"></div><div class="pn"><button data-a="bl" aria-label="Previous page">◀</button><span id="pn"></span><button data-a="br" aria-label="Next page">▶</button></div></div>
@@ -134,11 +168,9 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
     <div class="row r2"><button data-a="disp">DISP</button><button data-a="rep" id="brep">REP</button><button data-a="shuf" id="bshuf">SHUF</button><button data-a="vm">VOL−</button><button data-a="vp">VOL+</button><button data-a="open">OPEN</button><button data-a="intro" id="bintro">INTRO</button><button data-a="prog" id="bprog">PROG</button></div>
   </div>
 
-  <div class="lamp"><div class="g"><i></i><i></i><i></i></div><div class="base"></div></div>
-  <div class="heart" aria-hidden="true">♥</div>
-  <div class="deco" style="left:915px">✨</div>
+  <div class="slot" style="left:722px;width:80px"></div><div class="slot" style="left:806px;width:100px"></div><div class="slot" style="left:910px;width:84px"></div>
   <div class="board"></div>
-  <div class="cab"><div class="dr" id="d2"><button class="nm" data-a="dr2">CDs</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD book</button></div></div><div class="dr" id="d1"><button class="nm" data-a="dr1">stickers</button><div class="in" id="stk"></div></div></div>
+  <div class="cab"><div class="dr" id="d2"><button class="nm" data-a="dr2">CDs</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD box</button></div></div><div class="dr" id="d3"><button class="nm" data-a="dr3">decor</button><div class="in" id="dcs"></div></div><div class="dr" id="d1"><button class="nm" data-a="dr1">stickers</button><div class="in" id="stk"></div></div></div>
 </div></div>
 <div id="modal"></div><div id="rot">Turn your iPad sideways 🔄</div>
 
@@ -161,7 +193,7 @@ const sfx={btn:()=>blip(900,.04),chk:()=>blip(160,.06),clack:()=>{blip(300,.04);
 function motor(){}
 
 /* cd drawing */
-let K=1,DS=220,left='spindle',pg=0,cust={};try{cust=JSON.parse(localStorage.getItem('pd.cust')||'{}')}catch(e){}
+let K=1,DS=220,left='book',pg=0,cust={};try{cust=JSON.parse(localStorage.getItem('pd.cust')||'{}')}catch(e){}
 const applyCust=()=>cds.forEach(c=>Object.assign(c,cust[c.id]||{}));
 const saveCust=c=>{cust[c.id]={color:c.color,ink:c.ink,home:c.home,doodle:c.doodle,label:c.label};try{localStorage.setItem('pd.cust',JSON.stringify(cust))}catch(e){}};
 const mins=c=>c.dur?' · '+Math.round(c.dur/60)+' min':'';
@@ -253,6 +285,7 @@ function act(a){switch(a){
  case 'bl':case 'br':pg=Math.max(0,pg+(a==='br'?1:-1));renderStack();$('#pg').animate([{transform:'rotateY(-60deg)',opacity:.3},{transform:'none',opacity:1}],250);break
  case 'dr1':$('#d1').classList.toggle('open');break
  case 'dr2':$('#d2').classList.toggle('open');break
+ case 'dr3':$('#d3').classList.toggle('open');break
  case 'swap':{const nx={spindle:'book',book:'box',box:'spindle'},nm={spindle:'spindle',book:'CD book',box:'CD box'};left=nx[left];$('#bswap').textContent='Swap: '+nm[nx[left]];renderStack();break}
  case 'skin':setSkin($('#dm').classList.contains('portable')?'classic':'portable');break
  case 'intro':P.intro=!P.intro;break
@@ -295,7 +328,7 @@ function setSkin(k){$('#dm').classList.remove('portable','classic');$('#dm').cla
 
 /* sources: YouTube and Spotify */
 async function addSrc(k,q,quiet){const st=$('#st');if(!quiet&&st)st.textContent='Loading…';
- try{const r=await fetch('/api/'+(k==='sp'?'spotify':'youtube')+'?q='+encodeURIComponent(q)),j=await r.json();if(!r.ok)throw new Error(j.error);
+ try{const r=await fetch('/api/'+(k==='sp'?'spotify':'youtube')+'?q='+encodeURIComponent(q));let j;try{j=await r.json()}catch(e){throw new Error(r.status===404?'the helper file api/'+(k==='sp'?'spotify':'youtube')+'.js was not found on your site':'the server sent an unexpected answer (code '+r.status+')')}if(!r.ok)throw new Error(j.error);
   const have=new Set(cds.map(c=>c.id));
   const n=j.cds.filter(c=>!have.has(c.id)).map((c,i)=>({...c,src:k,color:COL[(cds.length+i)%6]}));
   if(n.length)cds=n.concat(cds.filter(c=>c.src!=='sim'||c===loaded));
@@ -313,17 +346,31 @@ function dragN(n,ev){const r=$('#room').getBoundingClientRect();
  const mv=e=>{n.style.left=(e.clientX-r.left)/K-22+'px';n.style.top=(e.clientY-r.top)/K-22+'px'};
  const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);const c=$('.cab').getBoundingClientRect(),b=n.getBoundingClientRect(),y=b.top+b.height/2;if(y>c.top)n.remove()};
  addEventListener('pointermove',mv);addEventListener('pointerup',up);if(ev)mv(ev)}
-['⭐','💖','🦋','🐬','🌸','☎️','📼','💿'].forEach(sv=>{const e=document.createElement('span');e.className='stk';e.textContent=sv;e.onpointerdown=ev=>{ev.preventDefault();place(sv,ev)};$('#stk').append(e)});
+['⭐','💖','🦋','🐬','🌸','✨','🦄','💿'].forEach(sv=>{const e=document.createElement('span');e.className='stk';e.textContent=sv;e.onpointerdown=ev=>{ev.preventDefault();place(sv,ev)};$('#stk').append(e)});
 
 /* fit the fixed room to the screen */
 function fit(){K=Math.min(innerWidth/1000,innerHeight/700);const r=$('#room');r.style.transform='scale('+K+')';r.style.left=(innerWidth-1000*K)/2+'px';r.style.top=(innerHeight-700*K)/2+'px'}
 addEventListener('resize',fit);fit();
+/* decorations: tap one on the shelf, then tap one in the decor drawer to swap */
+const R=n=>'<i></i>'.repeat(n);
+const DEC={lamp:'<div class="it lamp"><div class="g"><i></i><i></i><i></i></div><div class="base"></div></div>',heart:'<div class="it heart">♥</div>',
+ tama:'<div class="it tama"><b>^_^</b>'+R(3)+'</div>',gbc:'<div class="it gbc"><b></b>'+R(3)+'</div>',furby:'<div class="it furby"><b></b><b></b><i></i></div>',
+ glasses:'<div class="it glass"><b></b><b></b><i></i></div>',nokia:'<div class="it nokia"><b></b><u>'+R(12)+'</u></div>',polly:'<div class="it polly"><i></i><b></b><u></u><s>🏰</s></div>'};
+const WH={lamp:[70,210],heart:[84,84],tama:[68,84],gbc:[90,140],furby:[84,104],glasses:[104,44],nokia:[56,116],polly:[104,92]};
+let slots=['lamp','polly','tama'],sel=-1,rr=0;
+try{const v=JSON.parse(localStorage.getItem('pd.dec')||'null');if(Array.isArray(v)&&v.length===3&&v.every(k=>DEC[k]))slots=v}catch(e){}
+function drawDec(pop){document.querySelectorAll('.slot').forEach((el,i)=>{el.innerHTML=DEC[slots[i]];el.classList.toggle('sel',sel===i);if(pop===i){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}});
+ const d=$('#dcs');d.innerHTML='';Object.keys(DEC).forEach(k=>{const m=document.createElement('span');m.className='mini'+(slots.includes(k)?' on':'');m.innerHTML=DEC[k];const w=WH[k][0],h=WH[k][1];m.firstChild.style.transform='scale('+Math.min(.4,30/w,44/h)+')';m.onclick=()=>pickDec(k);d.append(m)})}
+function pickDec(k){let t=sel;if(t<0){if(slots.includes(k)){sel=slots.indexOf(k);drawDec();return}t=rr++%3}
+ const j=slots.indexOf(k);if(j>=0&&j!==t)slots[j]=slots[t];slots[t]=k;sel=-1;try{localStorage.setItem('pd.dec',JSON.stringify(slots))}catch(e){}drawDec(t)}
+function initDec(){document.querySelectorAll('.slot').forEach((el,i)=>el.onclick=()=>{sel=sel===i?-1:i;if(sel>=0)$('#d3').classList.add('open');drawDec()});drawDec()}
+
 /* Spotify player (embed) */
 window.onSpotifyIframeApiReady=A=>{A.createController($('#spi'),{width:200,height:152},c=>{sp=c;c.addListener('playback_update',e=>{const d=e.data;if(!isSP())return;P.t=d.position/1000;P.d=d.duration/1000||P.d;
  if(d.isPaused&&d.duration>0&&d.position>=d.duration-500&&P.playing&&Date.now()-P.lock>1500){P.lock=Date.now();ended()}})})};
 const st2=document.createElement('script');st2.src='https://open.spotify.com/embed/iframe-api/v1';st2.async=true;document.head.append(st2);
 let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}if(sk!=='portable')sk='classic';
-applyCust();renderStack();setSkin(sk);
+applyCust();renderStack();setSkin(sk);initDec();
 </script>
 </body>
 </html>
