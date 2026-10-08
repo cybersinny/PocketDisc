@@ -25,7 +25,7 @@ button:hover{filter:drop-shadow(0 0 6px #fff)}
 #yt{width:200px;height:200px;background:#222;border-radius:8px;overflow:hidden}
 .board{position:absolute;left:20px;right:20px;bottom:116px;height:24px;background:linear-gradient(#fff,#ffb3d6);border-radius:6px;box-shadow:0 4px 0 #d77fae}
 .cab{position:absolute;left:20px;right:20px;bottom:0;height:116px;display:flex;gap:10px;padding:14px;background:#ffe3f1;border-radius:0 0 10px 10px;box-shadow:inset 0 0 0 3px #fff}
-.dr{flex:1;background:#fff5fa;border:3px solid #ffb3d6;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:3;transition:transform .3s,box-shadow .3s}.dr.open{transform:translateY(-26px) scale(1.03);box-shadow:0 10px 0 #d77fae;background:#fff}.nm{font:inherit;font-size:15px;border:0;background:none;cursor:pointer;color:var(--ink)}.dr .in{display:none;gap:5px;align-items:center;justify-content:center}.dr.open .in{display:flex}.stk{font-size:26px;cursor:grab;touch-action:none;user-select:none}.placed{position:absolute;font-size:44px;cursor:grab;touch-action:none;z-index:6;user-select:none}
+.dr{flex:1;background:#fff5fa;border:3px solid #ffb3d6;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:3;transition:transform .3s,box-shadow .3s}.dr.open{transform:translateY(-26px) scale(1.03);box-shadow:0 10px 0 #d77fae;background:#fff}.nm{font:inherit;font-size:15px;border:0;background:none;cursor:pointer;color:var(--ink)}.dr .in{display:none;gap:5px;align-items:center;justify-content:center}.dr.open .in{display:flex}.stk{font-size:26px;cursor:grab;touch-action:none;user-select:none}.placed{position:absolute;font-size:26px;cursor:grab;touch-action:none;z-index:6;user-select:none}
 /* discs */
 .cd{--s:160px;width:var(--s);height:var(--s);border-radius:50%;position:relative;flex:none;font-size:calc(var(--s)/11);
  background:conic-gradient(#eee,#aaa,#fff,#bbb,#eee,#ccc,#fff,#aaa,#eee);background-size:cover;box-shadow:0 2px 6px #0004}
@@ -71,6 +71,34 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 .polly u{position:absolute;left:26px;bottom:14px;width:52px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#9fd8ff 55%,#c9a6ff)}
 .polly s{position:absolute;left:38px;bottom:26px;font-size:28px;text-decoration:none}
 #hp{display:none;position:absolute;left:640px;bottom:140px;width:130px;height:180px;pointer-events:none}.dm.portable~#hp{display:block}
+/* hanging holographic CDs */
+.hang{position:absolute;top:0;width:2px;height:var(--l);background:#ffffffcc;transform-origin:50% 0;animation:swing 4s ease-in-out infinite alternate;pointer-events:none}
+.hang::after{content:'';position:absolute;left:50%;top:100%;width:var(--d);height:var(--d);margin-left:calc(var(--d)/-2);border-radius:50%;background:radial-gradient(circle,#fff 0 12%,#fff0 13%),conic-gradient(from 20deg,#ff9ad0,#ffe38a,#9fd8ff,#c9a6ff,#b5f0c4,#ff9ad0,#ffe38a,#9fd8ff,#ff9ad0);box-shadow:0 0 8px #fff9,inset 0 0 0 2px #fff8;animation:holo 3s linear infinite}
+@keyframes swing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}@keyframes holo{to{filter:hue-rotate(360deg)}}
+/* new decorations */
+.cube{width:92px;height:80px;margin-top:14px;border-radius:10px;background:linear-gradient(145deg,#8f7cff,#4b3bb5);box-shadow:0 3px 0 #2f2480,inset 0 0 0 3px #ffffff40}
+.cube b{position:absolute;left:30px;top:-14px;width:32px;height:16px;border-radius:9px 9px 0 0;border:4px solid #4b3bb5;border-bottom:0}
+.cube i{position:absolute;border-radius:50%}.cube i:nth-of-type(1){left:26px;top:22px;width:40px;height:40px;background:#2f2480;box-shadow:inset 0 0 0 5px #6d5ce0}
+.cube i:nth-of-type(2){left:8px;top:8px;width:10px;height:10px;background:#9bff9b}.cube i:nth-of-type(3){right:8px;top:8px;width:10px;height:10px;background:#fff}
+.skate{width:40px;height:130px;margin-bottom:4px;transform:rotate(8deg);transform-origin:50% 100%}
+.skate b{position:absolute;inset:0;border-radius:20px;background:linear-gradient(#ff9a3c,#ff5a1f 55%,#222);box-shadow:0 3px 0 #0006,inset 0 0 0 3px #fff3}
+.skate i{position:absolute;left:8px;top:30px;width:24px;height:6px;background:#fff;opacity:.85;border-radius:3px}.skate i:nth-of-type(2){top:46px;width:14px}
+/* teen boy bedroom */
+.bp{display:none;width:92px;height:123px;border:4px solid #fff;text-align:center;place-items:center}
+#room.boy .bp{display:grid}#room.boy img.pos{display:none}
+#room.boy{background:radial-gradient(circle at 25% 10%,#6aa0e055,#0000 50%),repeating-linear-gradient(90deg,#1c3556 0 38px,#183050 38px 40px)}
+#room.boy .st{color:#bfe3ff;text-shadow:0 0 6px #4aa3ff}
+#room.boy .top button{background:linear-gradient(#e3f1ff,#4aa3ff)}
+#room.boy .win{background:radial-gradient(circle at 72% 28%,#fff 0 7px,#fff0 8px),linear-gradient(#0b1b3a,#27407a);box-shadow:0 0 0 2px #4aa3ff}
+#room.boy .tv{background:#9fb8d9;box-shadow:0 4px 0 #5a7fb0}
+#room.boy .board{background:linear-gradient(#a37a52,#6b4a2c);box-shadow:0 4px 0 #3e2a18}
+#room.boy .cab{background:#2a3f63;box-shadow:inset 0 0 0 3px #4a6a9a}
+#room.boy .dr{background:#3a557f;border-color:#6aa0e0}#room.boy .dr.open{background:#4a6a9a;box-shadow:0 10px 0 #1e3f85}#room.boy .nm{color:#e8f3ff}
+#room.boy .pg{border-left-color:#4aa3ff;background:#eef5ff;box-shadow:0 5px 0 #2b4f8a}#room.boy .pn{color:#e8f3ff}
+#room.boy .lamp .g{background:linear-gradient(#5be3ff,#3b6fd0)}
+#room.boy .dm.portable{background:radial-gradient(circle at 30% 22%,#fffa,#fff0 42%),radial-gradient(circle,#b9d4ff,#3b6fd0);box-shadow:0 8px 0 #1e3f85,inset 0 0 0 4px #fffb,inset 0 0 40px #fff9}
+#room.boy .dm.portable .lcd{background:#8fb3ff}
+#room.boy .dm.portable .row button{background:linear-gradient(#fff,#9fc4ff);box-shadow:0 2px 0 #1e3f85}
 .fly{position:fixed;left:0;top:0;z-index:50;pointer-events:none}
 /* spindle */
 .spindle{position:absolute;left:50px;bottom:140px;width:220px;height:270px}
@@ -143,24 +171,23 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 .pk{display:grid;place-items:center;border-radius:6px;background:linear-gradient(135deg,#ffffffb0,#d6e4ff80);border:2px solid #fff;cursor:pointer}
 .pn{display:flex;gap:10px;align-items:center;font-size:14px}.pn button{border:0;background:none;font-size:22px;cursor:pointer}
 .card label{display:flex;gap:8px;align-items:center;justify-content:space-between;width:100%;font-size:15px}.card label input,.card select{width:60%}.card input[type=color]{width:60px;height:30px;padding:0}.card input[type=checkbox]{width:auto}
-.box{position:absolute;left:30px;bottom:140px;width:250px;height:200px;display:none}.box.on{display:block}
-#bxc{position:absolute;inset:0}.bx{position:absolute;cursor:pointer;transition:transform .15s}.bx:hover{filter:drop-shadow(0 0 8px #fff);transform:translateY(-6px) rotate(var(--r))}
-.bf{position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(#ffb3d6,#ff7ab8);border:3px solid #fff;border-radius:8px 8px 14px 14px;box-shadow:0 5px 0 #d7609b;display:grid;place-items:center;font-size:20px;color:#fff;text-shadow:0 2px 0 #d7609b;z-index:2;pointer-events:none}
 .sp{position:fixed;z-index:70;pointer-events:none;font-size:20px}
 @media (prefers-reduced-motion:reduce){.st,.lamp i{animation:none}}
 </style>
 </head>
 <body>
 <div id="pan"><div id="room">
-  <div class="top"><button data-m="how">❔ How to use</button><button data-m="yt">▶ Add YouTube</button><button data-a="skin" id="bskin">Switch: Classic</button></div>
+  <div class="top"><button data-m="how">❔ How to use</button><button data-m="yt">▶ Add YouTube</button><button data-a="skin" id="bskin">Switch: Classic</button><button data-a="room" id="broom">Room: Girl</button></div>
   <div class="win"></div>
   <img class="pos" src="posters/shakira.jpg" alt="Poster" style="left:335px;top:40px;transform:rotate(-4deg)" onclick="showPoster(this.src)">
   <img class="pos" src="posters/nsync.jpg" alt="Poster" style="left:450px;top:42px;transform:rotate(3deg)" onclick="showPoster(this.src)">
+  <div class="pos bp" style="left:335px;top:40px;transform:rotate(-4deg);background:linear-gradient(160deg,#ff7a2f,#ffc23a);color:#1b1b2f;font:19px/1.05 'Permanent Marker',cursive">KICK<br>FLIP<br>🛹</div>
+  <div class="pos bp" style="left:450px;top:42px;transform:rotate(3deg);background:linear-gradient(160deg,#1b1b2f,#5b2d9e);color:#fff;font:17px/1.1 'Permanent Marker',cursive">LIVE<br>LOUD<br>⚡</div>
+  <div class="hang" style="left:578px;--l:62px;--d:42px;animation-delay:-1s"></div><div class="hang" style="left:628px;--l:96px;--d:38px;animation-delay:-2.3s"></div><div class="hang" style="left:684px;--l:74px;--d:44px;animation-delay:-.4s"></div>
   <div class="tv">pocket tv<div id="ytw"><div id="yt"></div></div></div>
 
   <div class="spindle" id="spin"><div class="arrows"><button data-a="sl" aria-label="Previous CD">⏪</button><button data-a="sr" aria-label="Next CD">⏩</button></div><div class="pole"></div><div class="stack" id="stack"></div></div>
   <div class="book" id="book"><div class="pg" id="pg"></div><div class="pn"><button data-a="bl" aria-label="Previous page">◀</button><span id="pn"></span><button data-a="br" aria-label="Next page">▶</button></div></div>
-  <div class="box" id="box"><div id="bxc"></div><div class="bf">CDs 💿</div></div>
 
   <div class="dm portable" id="dm">
     <div class="well"><div class="tray" id="tray"></div><div class="laser" id="laser"></div><div class="lid"></div></div>
@@ -176,7 +203,7 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 <g stroke="#bda9b6" stroke-width="1.2"><use href="#eb" transform="translate(15,168) rotate(-90)"/><use href="#eb" transform="translate(121,171) rotate(90)"/></g></svg>
   <div class="slot" style="left:770px;width:200px"></div>
   <div class="board"></div>
-  <div class="cab"><div class="dr" id="d2"><button class="nm" data-a="dr2">CDs</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD box</button></div></div><div class="dr" id="d3"><button class="nm" data-a="dr3">decor</button><div class="in" id="dcs"></div></div><div class="dr" id="d1"><button class="nm" data-a="dr1">stickers</button><div class="in" id="stk"></div></div></div>
+  <div class="cab"><div class="dr" id="d2"><button class="nm" data-a="dr2">CDs</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: spindle</button></div></div><div class="dr" id="d3"><button class="nm" data-a="dr3">decor</button><div class="in" id="dcs"></div></div><div class="dr" id="d1"><button class="nm" data-a="dr1">stickers</button><div class="in" id="stk"></div></div></div>
 </div></div>
 <div id="modal"></div><div id="rot">Turn your iPad sideways 🔄</div>
 
@@ -215,10 +242,9 @@ const visible=()=>cds.filter(c=>!c.out);
 function drawStack(){const st=$('#stack');st.innerHTML='';visible().slice(0,7).reverse().forEach((c,i,a)=>{const e=document.createElement('div');e.className='sd';e.dataset.id=c.id;e.style.setProperty('--c',c.color);e.title=c.name;if(c.ghost)e.style.visibility='hidden';if(i===a.length-1)e.onclick=()=>preview(c);st.append(e)})}
 function drawBook(){const g=$('#pg');g.innerHTML='';const v=visible(),n=Math.max(1,Math.ceil(v.length/4));pg=Math.min(pg,n-1);
  v.slice(pg*4,pg*4+4).forEach(c=>{const p=document.createElement('div');p.className='pk';p.dataset.id=c.id;p.onclick=()=>preview(c);const d=disc(c,76);if(c.ghost)d.style.visibility='hidden';p.append(d);g.append(p)});$('#pn').textContent=(pg+1)+' / '+n}
-function drawBox(){const g=$('#bxc');g.innerHTML='';visible().slice(0,14).forEach((c,i)=>{const e=document.createElement('div');e.className='bx';e.dataset.id=c.id;e.style.cssText=`left:${(i*57)%168}px;top:${(i*29)%46}px;--r:${(i*47)%50-25}deg;transform:rotate(var(--r));z-index:${i%3}`;if(c.ghost)e.style.visibility='hidden';e.onclick=()=>preview(c);e.append(disc(c,82));g.append(e)})}
-const renderStack=()=>{$('#spin').style.display=left==='spindle'?'':'none';$('#book').classList.toggle('on',left==='book');$('#box').classList.toggle('on',left==='box');drawStack();drawBook();drawBox()};
+const renderStack=()=>{$('#spin').style.display=left==='spindle'?'':'none';$('#book').classList.toggle('on',left==='book');drawStack();drawBook()};
 function renderTray(){const t=$('#tray');t.innerHTML='';if(loaded){const d=disc(loaded,DS);d.classList.toggle('spin',P.playing);t.append(d)}}
-const rectOf=cd=>{const e=document.querySelector({book:'.pk',box:'.bx',spindle:'.sd'}[left]+`[data-id="${cd.id}"]`);return(e||$('#spin')).getBoundingClientRect()};
+const rectOf=cd=>{const e=document.querySelector({book:'.pk',spindle:'.sd'}[left]+`[data-id="${cd.id}"]`);return(e||$('#spin')).getBoundingClientRect()};
 
 /* fly a disc: rises out of its place, glides, drops into the next (s0/s1 = flatness at start/end) */
 async function fly(cd,a,b,s0,s1){const z=DS*K,f=disc(cd,z);f.classList.add('fly');document.body.append(f);
@@ -290,7 +316,8 @@ function act(a){switch(a){
  case 'dr1':$('#d1').classList.toggle('open');break
  case 'dr2':$('#d2').classList.toggle('open');break
  case 'dr3':$('#d3').classList.toggle('open');break
- case 'swap':{const nx={spindle:'book',book:'box',box:'spindle'},nm={spindle:'spindle',book:'CD book',box:'CD box'};left=nx[left];$('#bswap').textContent='Swap: '+nm[nx[left]];renderStack();break}
+ case 'swap':{const nx={spindle:'book',book:'spindle'},nm={spindle:'spindle',book:'CD book'};left=nx[left];$('#bswap').textContent='Swap: '+nm[nx[left]];renderStack();break}
+ case 'room':setRoom(room==='girl'?'boy':'girl');break
  case 'skin':setSkin($('#dm').classList.contains('portable')?'classic':'portable');break
  case 'intro':P.intro=!P.intro;break
  case 'prog':progUI();break}
@@ -342,14 +369,16 @@ try{JSON.parse(localStorage.getItem('pd.src')||'[]').forEach(x=>{const m=x.match
 
 /* YouTube player */
 const tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.append(tag);
-window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('yt',{width:200,height:200,playerVars:{playsinline:1,controls:0},events:{onStateChange:e=>{if(e.data===0)ended()}}})};
+window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('yt',{width:200,height:200,playerVars:{playsinline:1,controls:0},events:{onStateChange:e=>{if(e.data===0)ended();if(e.data===1)P.skips=0},onError:()=>{if(!isYT()||!P.playing)return;P.skips=(P.skips||0)+1;if(P.skips>loaded.tracks.length){stop();flash('NO PLAY');return}flash('SKIPPED');go(1,true)}}})};
 /* stickers */
 function place(sv,ev){const n=document.createElement('span');n.className='placed';n.textContent=sv;$('#room').append(n);n.onpointerdown=e=>{e.preventDefault();dragN(n)};dragN(n,ev)}
 function dragN(n,ev){const r=$('#room').getBoundingClientRect();
- const mv=e=>{n.style.left=(e.clientX-r.left)/K-22+'px';n.style.top=(e.clientY-r.top)/K-22+'px'};
+ const mv=e=>{n.style.left=(e.clientX-r.left)/K-13+'px';n.style.top=(e.clientY-r.top)/K-13+'px'};
  const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);const c=$('.cab').getBoundingClientRect(),b=n.getBoundingClientRect(),y=b.top+b.height/2;if(y>c.top)n.remove()};
  addEventListener('pointermove',mv);addEventListener('pointerup',up);if(ev)mv(ev)}
-['⭐','💖','🦋','🐬','🌸','✨','🦄','💿'].forEach(sv=>{const e=document.createElement('span');e.className='stk';e.textContent=sv;e.onpointerdown=ev=>{ev.preventDefault();place(sv,ev)};$('#stk').append(e)});
+const STK={girl:['⭐','💖','🦋','🐬','🌸','✨','🦄','💿'],boy:['⚡','🛹','🎸','💀','🔥','🎮','👾','💿']};
+function buildStk(){$('#stk').innerHTML='';STK[room].forEach(sv=>{const e=document.createElement('span');e.className='stk';e.textContent=sv;e.onpointerdown=ev=>{ev.preventDefault();place(sv,ev)};$('#stk').append(e)})}
+function setRoom(r){room=r;$('#room').classList.toggle('boy',r==='boy');document.body.style.background=r==='boy'?'#10233b':'';$('#broom').textContent='Room: '+(r==='boy'?'Boy':'Girl');slots=[DECS[r]];sel=-1;buildStk();drawDec();try{localStorage.setItem('pd.room',r)}catch(e){}}
 
 /* fit the fixed room to the screen */
 function fit(){K=Math.min(innerWidth/1000,innerHeight/700);const r=$('#room');r.style.transform='scale('+K+')';r.style.left=(innerWidth-1000*K)/2+'px';r.style.top=(innerHeight-700*K)/2+'px'}
@@ -358,17 +387,18 @@ addEventListener('resize',fit);fit();
 const R=n=>'<i></i>'.repeat(n);
 const DEC={lamp:'<div class="it lamp"><div class="g"><i></i><i></i><i></i></div><div class="base"></div></div>',heart:'<div class="it heart">♥</div>',
  tama:'<div class="it tama"><b>^_^</b>'+R(3)+'</div>',gbc:'<div class="it gbc"><b></b>'+R(3)+'</div>',
- glasses:'<div class="it glass"><b></b><b></b><i></i></div>',nokia:'<div class="it nokia"><b></b><u>'+R(12)+'</u></div>'};
-const WH={lamp:[70,210],heart:[84,84],tama:[68,84],gbc:[90,140],glasses:[104,44],nokia:[56,116]};
-let slots=['lamp'],sel=-1;
-try{const v=JSON.parse(localStorage.getItem('pd.dec')||'null');if(Array.isArray(v)&&v.length===1&&v.every(k=>DEC[k]))slots=v}catch(e){}
+ glasses:'<div class="it glass"><b></b><b></b><i></i></div>',nokia:'<div class="it nokia"><b></b><u>'+R(12)+'</u></div>',cube:'<div class="it cube"><b></b><i></i><i></i><i></i></div>',skate:'<div class="it skate"><b></b><i></i><i></i></div>',sneaker:'<div class="it" style="font-size:76px;line-height:1">👟</div>'};
+const ROOMDEC={girl:['lamp','heart','tama','gbc','glasses','nokia'],boy:['cube','skate','lamp','gbc','nokia','sneaker']};
+const WH={lamp:[70,210],heart:[84,84],tama:[68,84],gbc:[90,140],glasses:[104,44],nokia:[56,116],cube:[92,94],skate:[40,134],sneaker:[76,76]};
+let DECS={girl:'lamp',boy:'cube'},slots=['lamp'],sel=-1,room='girl';
+try{const v=JSON.parse(localStorage.getItem('pd.dec2')||'null');if(v&&DEC[v.girl]&&DEC[v.boy])DECS=v}catch(e){}
 function drawDec(pop){document.querySelectorAll('.slot').forEach((el,i)=>{el.innerHTML=DEC[slots[i]];el.classList.toggle('sel',sel===i);if(pop===i){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}});
- const d=$('#dcs');d.innerHTML='';Object.keys(DEC).forEach(k=>{const m=document.createElement('span');m.className='mini'+(slots.includes(k)?' on':'');m.innerHTML=DEC[k];const w=WH[k][0],h=WH[k][1];m.firstChild.style.transform='scale('+Math.min(.4,30/w,44/h)+')';m.onclick=()=>pickDec(k);d.append(m)})}
-function pickDec(k){slots[0]=k;try{localStorage.setItem('pd.dec',JSON.stringify(slots))}catch(e){}drawDec(0)}
+ const d=$('#dcs');d.innerHTML='';ROOMDEC[room].forEach(k=>{const m=document.createElement('span');m.className='mini'+(slots.includes(k)?' on':'');m.innerHTML=DEC[k];const w=WH[k][0],h=WH[k][1];m.firstChild.style.transform='scale('+Math.min(.4,30/w,44/h)+')';m.onclick=()=>pickDec(k);d.append(m)})}
+function pickDec(k){slots[0]=k;DECS[room]=k;try{localStorage.setItem('pd.dec2',JSON.stringify(DECS))}catch(e){}drawDec(0)}
 function initDec(){document.querySelectorAll('.slot').forEach((el,i)=>el.onclick=()=>$('#d3').classList.toggle('open'));drawDec()}
 
 let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}if(sk!=='portable')sk='classic';
-applyCust();renderStack();setSkin(sk);initDec();
+try{room=localStorage.getItem('pd.room')==='boy'?'boy':'girl'}catch(e){}applyCust();renderStack();setSkin(sk);initDec();setRoom(room);
 </script>
 </body>
 </html>
