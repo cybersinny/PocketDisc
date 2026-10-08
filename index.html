@@ -168,7 +168,7 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
     <div class="row r2"><button data-a="disp">DISP</button><button data-a="rep" id="brep">REP</button><button data-a="shuf" id="bshuf">SHUF</button><button data-a="vm">VOL−</button><button data-a="vp">VOL+</button><button data-a="open">OPEN</button><button data-a="intro" id="bintro">INTRO</button><button data-a="prog" id="bprog">PROG</button></div>
   </div>
 
-  <div class="slot" style="left:722px;width:80px"></div><div class="slot" style="left:806px;width:100px"></div><div class="slot" style="left:910px;width:84px"></div>
+  <div class="slot" style="left:770px;width:200px"></div>
   <div class="board"></div>
   <div class="cab"><div class="dr" id="d2"><button class="nm" data-a="dr2">CDs</button><div class="in"><span style="font-size:30px">📖</span><button class="nm" data-a="swap" id="bswap">Swap: CD box</button></div></div><div class="dr" id="d3"><button class="nm" data-a="dr3">decor</button><div class="in" id="dcs"></div></div><div class="dr" id="d1"><button class="nm" data-a="dr1">stickers</button><div class="in" id="stk"></div></div></div>
 </div></div>
@@ -354,16 +354,15 @@ addEventListener('resize',fit);fit();
 /* decorations: tap one on the shelf, then tap one in the decor drawer to swap */
 const R=n=>'<i></i>'.repeat(n);
 const DEC={lamp:'<div class="it lamp"><div class="g"><i></i><i></i><i></i></div><div class="base"></div></div>',heart:'<div class="it heart">♥</div>',
- tama:'<div class="it tama"><b>^_^</b>'+R(3)+'</div>',gbc:'<div class="it gbc"><b></b>'+R(3)+'</div>',furby:'<div class="it furby"><b></b><b></b><i></i></div>',
- glasses:'<div class="it glass"><b></b><b></b><i></i></div>',nokia:'<div class="it nokia"><b></b><u>'+R(12)+'</u></div>',polly:'<div class="it polly"><i></i><b></b><u></u><s>🏰</s></div>'};
-const WH={lamp:[70,210],heart:[84,84],tama:[68,84],gbc:[90,140],furby:[84,104],glasses:[104,44],nokia:[56,116],polly:[104,92]};
-let slots=['lamp','polly','tama'],sel=-1,rr=0;
-try{const v=JSON.parse(localStorage.getItem('pd.dec')||'null');if(Array.isArray(v)&&v.length===3&&v.every(k=>DEC[k]))slots=v}catch(e){}
+ tama:'<div class="it tama"><b>^_^</b>'+R(3)+'</div>',gbc:'<div class="it gbc"><b></b>'+R(3)+'</div>',
+ glasses:'<div class="it glass"><b></b><b></b><i></i></div>',nokia:'<div class="it nokia"><b></b><u>'+R(12)+'</u></div>'};
+const WH={lamp:[70,210],heart:[84,84],tama:[68,84],gbc:[90,140],glasses:[104,44],nokia:[56,116]};
+let slots=['lamp'],sel=-1;
+try{const v=JSON.parse(localStorage.getItem('pd.dec')||'null');if(Array.isArray(v)&&v.length===1&&v.every(k=>DEC[k]))slots=v}catch(e){}
 function drawDec(pop){document.querySelectorAll('.slot').forEach((el,i)=>{el.innerHTML=DEC[slots[i]];el.classList.toggle('sel',sel===i);if(pop===i){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}});
  const d=$('#dcs');d.innerHTML='';Object.keys(DEC).forEach(k=>{const m=document.createElement('span');m.className='mini'+(slots.includes(k)?' on':'');m.innerHTML=DEC[k];const w=WH[k][0],h=WH[k][1];m.firstChild.style.transform='scale('+Math.min(.4,30/w,44/h)+')';m.onclick=()=>pickDec(k);d.append(m)})}
-function pickDec(k){let t=sel;if(t<0){if(slots.includes(k)){sel=slots.indexOf(k);drawDec();return}t=rr++%3}
- const j=slots.indexOf(k);if(j>=0&&j!==t)slots[j]=slots[t];slots[t]=k;sel=-1;try{localStorage.setItem('pd.dec',JSON.stringify(slots))}catch(e){}drawDec(t)}
-function initDec(){document.querySelectorAll('.slot').forEach((el,i)=>el.onclick=()=>{sel=sel===i?-1:i;if(sel>=0)$('#d3').classList.add('open');drawDec()});drawDec()}
+function pickDec(k){slots[0]=k;try{localStorage.setItem('pd.dec',JSON.stringify(slots))}catch(e){}drawDec(0)}
+function initDec(){document.querySelectorAll('.slot').forEach((el,i)=>el.onclick=()=>$('#d3').classList.toggle('open'));drawDec()}
 
 /* Spotify player (embed) */
 window.onSpotifyIframeApiReady=A=>{A.createController($('#spi'),{width:200,height:152},c=>{sp=c;c.addListener('playback_update',e=>{const d=e.data;if(!isSP())return;P.t=d.position/1000;P.d=d.duration/1000||P.d;
