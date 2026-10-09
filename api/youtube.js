@@ -20,7 +20,6 @@ const secs = d => {
   const m = (d || '').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/) || [];
   return (+m[1] || 0) * 3600 + (+m[2] || 0) * 60 + (+m[3] || 0);
 };
-const pick = th => (th && (th.high || th.medium || th.default || {}).url) || null;
 
 async function durations(ids) {
   const out = {};
@@ -40,21 +39,7 @@ async function toCD(p) {
   const d = await durations(tracks.map(t => t.id));
   tracks.forEach(t => { t.dur = d[t.id] || 0; });
   return {
-    id: p.id, name: p.snippet.title, cover: null, thumb: pick(p.snippet.thumbnails),
-    count: tracks.length, dur: tracks.reduce((a, t) => a + t.dur, 0), tracks
-  };
-}
-
-// Loose video links (for example from a video's Share button) become one CD
-async function videosCD(ids) {
-  const vd = await g('videos', { part: 'snippet,contentDetails', id: ids.join(',') });
-  const by = {};
-  vd.items.forEach(v => { by[v.id] = v; });
-  const vids = ids.map(i => by[i]).filter(Boolean);
-  const tracks = vids.map(v => ({ id: v.id, ...split(v.snippet.title, v.snippet.channelTitle), dur: secs(v.contentDetails.duration) }));
-  return {
-    id: 'v_' + ids.join('').slice(0, 40), name: tracks.length === 1 ? tracks[0].title : 'Song picks',
-    cover: null, thumb: vids[0] ? pick(vids[0].snippet.thumbnails) : null,
+    id: p.id, name: p.snippet.title, cover: null,
     count: tracks.length, dur: tracks.reduce((a, t) => a + t.dur, 0), tracks
   };
 }
@@ -62,21 +47,19 @@ async function videosCD(ids) {
 module.exports = async (req, res) => {
   try {
     if (!K) return res.status(500).json({ error: 'Missing YOUTUBE_API_KEY in Vercel settings' });
-    const lists = [], chans = [], vids = [];
+    const lists = [], chans = [];
     let note = '';
     for (const t of (req.query.q || '').split(/\s+/).filter(Boolean)) {
-      const v = t.match(/youtu\.be\/([\w-]{11})/) || t.match(/[?&]v=([\w-]{11})/) || t.match(/\/(?:shorts|embed)\/([\w-]{11})/);
       const l = t.match(/[?&]list=([\w-]+)/) || t.match(/^(PL[\w-]{10,})$/);
       if (l) {
-        if (/^(RD|WL|LL)/.test(l[1])) {          // YouTube Mixes and private lists cannot be read
-          note = 'That link is a YouTube Mix or a private list, which can not be read. Use a normal public playlist.';
-          if (v) vids.push(v[1]);                 // but keep the song it points to
-        } else lists.push(l[1]);
+        if (/^(RD|WL|LL)/.test(l[1])) note = 'That link is a YouTube Mix or a private list, which can not be read. Use a normal public playlist.';
+        else lists.push(l[1]);
         continue;
       }
       const h = t.match(/@[\w.\-]+/), c = t.match(/(UC[\w-]{22})/);
       if (h || c) { chans.push(c ? { id: c[1] } : { forHandle: h[0] }); continue; }
-      if (v) vids.push(v[1]);
+      if (/youtu\.be\/|[?&]v=|\/shorts\//.test(t))
+        note = note || 'That link is a single video, not a playlist. Open the playlist on YouTube and copy the link from the browser bar.';
     }
     let pls = [];
     if (lists.length) pls = pls.concat((await g('playlists', { part: 'snippet', id: [...new Set(lists)].join(',') })).items || []);
@@ -85,10 +68,8 @@ module.exports = async (req, res) => {
       const cid = cj.items && cj.items[0] && cj.items[0].id;
       if (cid) pls = pls.concat((await g('playlists', { part: 'snippet', channelId: cid, maxResults: 12 })).items || []);
     }
-    const cds = await Promise.all(pls.slice(0, 20).map(toCD));
-    if (vids.length) cds.push(await videosCD([...new Set(vids)].slice(0, 50)));
-    const out = cds.filter(c => c && c.count);
-    if (!out.length) return res.status(404).json({ error: note || 'Nothing found. Make sure the playlist is public (or unlisted) and paste its link.' });
+    const out = (await Promise.all(pls.slice(0, 20).map(toCD))).filter(c => c && c.count);
+    if (!out.length) return res.status(404).json({ error: note || 'Nothing found. Make sure the playlist is public (or unlisted) and paste its link from the browser bar.' });
     res.setHeader('Cache-Control', 's-maxage=600');
     res.json({ cds: out });
   } catch (e) {
