@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PocketDisc</title>
+<meta name="description" content="A Y2K bedroom with a CD player. Turn your YouTube playlists into CDs.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PocketDisc">
+<meta property="og:description" content="A Y2K bedroom with a CD player. Turn your YouTube playlists into CDs.">
+<meta property="og:image" content="https://pocketdisc.vercel.app/preview.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pocketdisc.vercel.app/preview.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BF%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Permanent+Marker&family=Baloo+2:wght@600&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#5a2a49;--hot:#ff7ab8}
@@ -230,7 +239,7 @@ function motor(){}
 
 /* cd drawing */
 let K=1,DS=220,left='book',pg=0,cust={},hidden=[];try{hidden=JSON.parse(localStorage.getItem('pd.hide')||'[]')}catch(e){}try{cust=JSON.parse(localStorage.getItem('pd.cust')||'{}')}catch(e){}
-const applyCust=()=>cds.forEach(c=>{const v=cust[c.id];if(v){Object.assign(c,v);if(v.home===undefined&&c.thumb)c.home=true}});
+const applyCust=()=>cds.forEach(c=>{const v=cust[c.id];if(v)Object.assign(c,v)});
 const saveCust=c=>{cust[c.id]={color:c.color,ink:c.ink,home:!!c.home,doodle:c.doodle,label:c.label};try{localStorage.setItem('pd.cust',JSON.stringify(cust))}catch(e){}};
 const mins=c=>c.dur?' · '+Math.round(c.dur/60)+' min':'';
 let U=0;
@@ -239,7 +248,7 @@ function arcText(name,cnt){const id='t'+(U++);let l1='',l2='';
  if(!l1){l1=name.slice(0,20);l2=name.slice(20)}
  const cut=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t,tp=(i,t)=>`<text><textPath href="#${id}${i}" startOffset="50%" text-anchor="middle">${esc(t)}</textPath></text>`;
  return `<svg viewBox="0 0 100 100"><defs><path id="${id}a" d="M12,50 A38,38 0 0 1 88,50"/><path id="${id}b" d="M21,50 A29,29 0 0 1 79,50"/><path id="${id}c" d="M16,50 A34,34 0 0 0 84,50"/></defs>${tp('a',cut(l1,22))}${l2?tp('b',cut(l2,18)):''}${tp('c',cnt)}</svg>`}
-function disc(cd,sz){const d=document.createElement('div'),img=cd.cover||(cd.thumbOn&&cd.thumb),h=!img||cd.home;d.className='cd'+(h?' home':'');d.style.setProperty('--s',sz+'px');d.style.setProperty('--c',cd.color);d.style.setProperty('--ink',cd.ink||'#222222');
+function disc(cd,sz){const d=document.createElement('div'),img=cd.cover,h=!img||cd.home;d.className='cd'+(h?' home':'');d.style.setProperty('--s',sz+'px');d.style.setProperty('--c',cd.color);d.style.setProperty('--ink',cd.ink||'#222222');
  if(!h)d.style.backgroundImage=`url(${img})`;else d.innerHTML=`<u class="${cd.doodle||''}"></u>${arcText(cd.label||cd.name,cd.count+' songs'+mins(cd))}`;return d}
 const visible=()=>cds.filter(c=>!c.out);
 function drawStack(){const st=$('#stack');st.innerHTML='';visible().slice(0,7).reverse().forEach((c,i,a)=>{const e=document.createElement('div');e.className='sd';e.dataset.id=c.id;e.style.setProperty('--c',c.color);e.title=c.name;if(c.ghost)e.style.visibility='hidden';if(i===a.length-1)e.onclick=()=>preview(c);st.append(e)})}
@@ -338,9 +347,9 @@ function custom(cd){modal(`<h2>Customize CD</h2><div id="pv"></div>
  <label>Disc <input type="color" id="cc" value="${cd.color}"></label>
  <label>Sharpie <input type="color" id="ci" value="${cd.ink||'#222222'}"></label>
  <label>Design <select id="cs"><option value="">plain</option><option>dots</option><option>stripes</option><option>rings</option></select></label>
- ${(cd.cover||cd.thumb)?'<label>Homemade look <input type="checkbox" id="ch"></label>':''}<button id="ok">Done</button>`);
- $('#cs').value=cd.doodle||'';if(cd.cover||cd.thumb)$('#ch').checked=!!cd.home;
- const up=()=>{cd.label=$('#cn').value;cd.color=$('#cc').value;cd.ink=$('#ci').value;cd.doodle=$('#cs').value;if(cd.cover||cd.thumb)cd.home=$('#ch').checked;$('#pv').innerHTML='';$('#pv').append(disc(cd,200))};
+ ${cd.cover?'<label>Homemade look <input type="checkbox" id="ch"></label>':''}<button id="ok">Done</button>`);
+ $('#cs').value=cd.doodle||'';if(cd.cover)$('#ch').checked=!!cd.home;
+ const up=()=>{cd.label=$('#cn').value;cd.color=$('#cc').value;cd.ink=$('#ci').value;cd.doodle=$('#cs').value;if(cd.cover)cd.home=$('#ch').checked;$('#pv').innerHTML='';$('#pv').append(disc(cd,200))};
  ['cn','cc','ci','cs','ch'].forEach(i=>{const e=$('#'+i);if(e)e.addEventListener('input',up)});up();
  $('#ok').onclick=()=>{saveCust(cd);renderStack();renderTray();preview(cd)}}
 function modal2(k){return({
@@ -365,7 +374,7 @@ function setSkin(k){$('#dm').classList.remove('portable','classic');$('#dm').cla
 async function addSrc(k,q,quiet){const st=$('#st');if(!quiet&&st)st.textContent='Loading…';
  try{const r=await fetch('/api/youtube'+'?q='+encodeURIComponent(q));let j;try{j=await r.json()}catch(e){throw new Error(r.status===404?'the helper file api/youtube.js was not found on your site':'the server sent an unexpected answer (code '+r.status+')')}if(!r.ok)throw new Error(j.error);
   const have=new Set(cds.map(c=>c.id));
-  const n=j.cds.filter(c=>!have.has(c.id)&&!hidden.includes(c.id)).map((c,i)=>({...c,src:k,thumbOn:true,color:COL[(cds.length+i)%6]}));
+  const n=j.cds.filter(c=>!have.has(c.id)&&!hidden.includes(c.id)).map((c,i)=>({...c,src:k,color:COL[(cds.length+i)%6]}));
   if(n.length)cds=n.concat(cds.filter(c=>c.src!=='sim'||c===loaded));
   applyCust();renderStack();if(!quiet){save(k+'|'+q);closeM()}}
  catch(e){if(!quiet&&st)st.textContent='Could not load: '+e.message}}
