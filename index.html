@@ -110,6 +110,7 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 #room.boy .dm.portable .lcd{background:#a8bedb}
 #room.boy .dm.portable .row button{background:linear-gradient(#fff,#c3d3e8);box-shadow:0 2px 0 #3d5a80}
 #room:not(.boy) .dm.classic{background:linear-gradient(145deg,#e6d2ff,#CF9FFF 55%,#b98be6);box-shadow:0 6px 0 #9a6fc9,inset 0 0 0 3px #fff}
+.note{position:absolute;font-size:22px;pointer-events:none;z-index:7;text-shadow:0 0 4px #fff}
 .fly{position:fixed;left:0;top:0;z-index:50;pointer-events:none}
 /* spindle */
 .spindle{position:absolute;left:50px;bottom:140px;width:220px;height:270px}
@@ -354,7 +355,7 @@ function custom(cd){modal(`<h2>Customize CD</h2><div id="pv"></div>
  $('#ok').onclick=()=>{saveCust(cd);renderStack();renderTray();preview(cd)}}
 function modal2(k){return({
  how:`<h2>How to use</h2><p>1. Tap Add YouTube and paste a channel @handle or a playlist link. Every public playlist becomes a CD.<br>2. Tap a CD (top of the spindle, or in the book), then Insert. Customize changes its colors and sharpie.<br>3. Drawers: stickers go anywhere (drag one back onto the drawers to put it away). The CD book can replace the spindle.<br>4. OPEN lifts the lid. Tap the disc to take it out.</p><button data-x>Got it</button>`,
- yt:`<h2>Add YouTube</h2><input id="q" placeholder="paste a playlist, @channel or video link"><button id="go">Make CDs</button><p id="st"></p>${hidden.length?'<button id="rs">Bring back removed CDs ('+hidden.length+')</button>':''}<button data-x>Close</button>`})[k]}
+ yt:`<h2>Add YouTube</h2><input id="q" placeholder="paste a playlist or @channel link"><button id="go">Make CDs</button><p id="st"></p>${hidden.length?'<button id="rs">Bring back removed CDs ('+hidden.length+')</button>':''}<button data-x>Close</button>`})[k]}
 function openM(k){modal(modal2(k));if(k==='yt'){$('#go').onclick=()=>addSrc(k,$('#q').value);const r=$('#rs');if(r)r.onclick=()=>{hidden=[];try{localStorage.removeItem('pd.hide')}catch(e){}location.reload()}}}
 
 /* Program mode: tap songs in the order you want */
@@ -411,6 +412,12 @@ function drawDec(pop){document.querySelectorAll('.slot').forEach((el,i)=>{el.inn
 function pickDec(k){slots[0]=k;DECS[room]=k;try{localStorage.setItem('pd.dec2',JSON.stringify(DECS))}catch(e){}drawDec(0)}
 function initDec(){document.querySelectorAll('.slot').forEach((el,i)=>el.onclick=()=>$('#d3').classList.toggle('open'));drawDec()}
 
+/* music notes drift out of the earbuds while a song plays (round player only) */
+setInterval(()=>{if(!P.playing||!loaded||document.hidden||!$('#dm').classList.contains('portable'))return;
+ const r=Math.random()<.5,x=r?761:655,y=r?549:546,n=document.createElement('span');n.className='note';n.textContent=['🎵','🎶'][Math.random()*2|0];
+ n.style.left=x-10+(Math.random()*10-5)+'px';n.style.top=y-26+'px';$('#room').append(n);
+ const dx=(r?14:-6)+Math.random()*22-6,dy=130+Math.random()*50;
+ n.animate([{transform:'translate(0,0) scale(.6) rotate(-8deg)',opacity:0},{opacity:1,offset:.2},{transform:`translate(${dx}px,${-dy}px) scale(1.15) rotate(${Math.random()*30-15}deg)`,opacity:0}],{duration:2600,easing:'ease-out'}).finished.then(()=>n.remove(),()=>n.remove())},650);
 let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}if(sk!=='portable')sk='classic';
 try{room=localStorage.getItem('pd.room')==='boy'?'boy':'girl'}catch(e){}cds=cds.filter(c=>!hidden.includes(c.id));applyCust();renderStack();setSkin(sk);initDec();setRoom(room);
 </script>
