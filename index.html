@@ -84,8 +84,8 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 .skate b{position:absolute;inset:0;border-radius:20px;background:linear-gradient(#ff9a3c,#ff5a1f 55%,#222);box-shadow:0 3px 0 #0006,inset 0 0 0 3px #fff3}
 .skate i{position:absolute;left:8px;top:30px;width:24px;height:6px;background:#fff;opacity:.85;border-radius:3px}.skate i:nth-of-type(2){top:46px;width:14px}
 /* teen boy bedroom */
-.bp{display:none;width:92px;height:123px;border:4px solid #fff;text-align:center;place-items:center}
-#room.boy .bp{display:grid}#room.boy img.pos{display:none}
+.bp{display:none;position:absolute;width:92px;height:123px;object-fit:cover;border:4px solid #fff;background:#fff;cursor:pointer;box-shadow:2px 3px 0 #0002}
+#room.boy .bp{display:block}#room.boy img.pos{display:none}
 #room.boy{background:radial-gradient(circle at 25% 10%,#6aa0e055,#0000 50%),repeating-linear-gradient(90deg,#1c3556 0 38px,#183050 38px 40px)}
 #room.boy .st{color:#bfe3ff;text-shadow:0 0 6px #4aa3ff}
 #room.boy .top button{background:linear-gradient(#e3f1ff,#4aa3ff)}
@@ -96,9 +96,11 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 #room.boy .dr{background:#3a557f;border-color:#6aa0e0}#room.boy .dr.open{background:#4a6a9a;box-shadow:0 10px 0 #1e3f85}#room.boy .nm{color:#e8f3ff}
 #room.boy .pg{border-left-color:#4aa3ff;background:#eef5ff;box-shadow:0 5px 0 #2b4f8a}#room.boy .pn{color:#e8f3ff}
 #room.boy .lamp .g{background:linear-gradient(#5be3ff,#3b6fd0)}
-#room.boy .dm.portable{background:radial-gradient(circle at 30% 22%,#fffa,#fff0 42%),radial-gradient(circle,#b9d4ff,#3b6fd0);box-shadow:0 8px 0 #1e3f85,inset 0 0 0 4px #fffb,inset 0 0 40px #fff9}
-#room.boy .dm.portable .lcd{background:#8fb3ff}
-#room.boy .dm.portable .row button{background:linear-gradient(#fff,#9fc4ff);box-shadow:0 2px 0 #1e3f85}
+#room.boy .dm.portable{background:radial-gradient(circle at 30% 22%,#ffffff40,#fff0 42%),#6082B6;box-shadow:0 8px 0 #3d5a80,inset 0 0 0 4px #ffffff80}
+#room.boy .dm.portable::before{display:none}
+#room.boy .dm.portable .lcd{background:#a8bedb}
+#room.boy .dm.portable .row button{background:linear-gradient(#fff,#c3d3e8);box-shadow:0 2px 0 #3d5a80}
+#room:not(.boy) .dm.classic{background:linear-gradient(145deg,#e6d2ff,#CF9FFF 55%,#b98be6);box-shadow:0 6px 0 #9a6fc9,inset 0 0 0 3px #fff}
 .fly{position:fixed;left:0;top:0;z-index:50;pointer-events:none}
 /* spindle */
 .spindle{position:absolute;left:50px;bottom:140px;width:220px;height:270px}
@@ -115,8 +117,9 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 /* skin: round translucent portable */
 .dm.portable{width:340px;height:340px;padding:0;border-radius:50%;background:radial-gradient(circle at 30% 22%,#fffc,#fff0 42%),radial-gradient(circle,#ffd9ea,#ff9ac8);box-shadow:0 8px 0 #d77fae,inset 0 0 0 4px #fffb,inset 0 0 40px #fff9}
 .dm.portable::before{content:'';position:absolute;inset:0;border-radius:50%;pointer-events:none;opacity:.6;background:radial-gradient(#fff 1px,transparent 1.6px) 0 0/13px 13px,radial-gradient(#fff 1px,transparent 1.6px) 6px 7px/13px 13px}
+.dm.portable .lid{transform-style:preserve-3d}
 .dm.portable .well{position:absolute;left:54px;top:54px;width:232px;height:232px;margin:0}
-.dm.portable .lcd{position:absolute;left:111px;top:111px;width:118px;height:118px;margin:0;border-radius:50%;background:#f7b9d3;display:grid;place-items:center;z-index:3;box-shadow:0 0 0 3px #fff8,inset 0 0 8px #0003}
+.dm.portable .lcd{position:absolute;left:61px;top:61px;width:118px;height:118px;margin:0;backface-visibility:hidden;border-radius:50%;background:#f7b9d3;display:grid;place-items:center;z-index:3;box-shadow:0 0 0 3px #fff8,inset 0 0 8px #0003}
 .dm.portable .scr{width:98px;height:58px;padding:1px 6px}
 .dm.portable #l1{font-size:25px;line-height:28px}.dm.portable #l2{font-size:16px;gap:6px}
 .dm.portable .row{display:contents}
@@ -181,8 +184,8 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
   <div class="win"></div>
   <img class="pos" src="posters/shakira.jpg" alt="Poster" style="left:335px;top:40px;transform:rotate(-4deg)" onclick="showPoster(this.src)">
   <img class="pos" src="posters/nsync.jpg" alt="Poster" style="left:450px;top:42px;transform:rotate(3deg)" onclick="showPoster(this.src)">
-  <div class="pos bp" style="left:335px;top:40px;transform:rotate(-4deg);background:linear-gradient(160deg,#ff7a2f,#ffc23a);color:#1b1b2f;font:19px/1.05 'Permanent Marker',cursive">KICK<br>FLIP<br>🛹</div>
-  <div class="pos bp" style="left:450px;top:42px;transform:rotate(3deg);background:linear-gradient(160deg,#1b1b2f,#5b2d9e);color:#fff;font:17px/1.1 'Permanent Marker',cursive">LIVE<br>LOUD<br>⚡</div>
+  <img class="bp" src="posters/linkin.jpg" alt="Poster" style="left:335px;top:40px;transform:rotate(-4deg);object-position:top" onclick="showPoster(this.src)">
+  <img class="bp" src="posters/skate.jpg" alt="Poster" style="left:450px;top:42px;transform:rotate(3deg)" onclick="showPoster(this.src)">
   <div class="hang" style="left:578px;--l:62px;--d:42px;animation-delay:-1s"></div><div class="hang" style="left:628px;--l:96px;--d:38px;animation-delay:-2.3s"></div><div class="hang" style="left:684px;--l:74px;--d:44px;animation-delay:-.4s"></div>
   <div class="tv">pocket tv<div id="ytw"><div id="yt"></div></div></div>
 
@@ -226,9 +229,9 @@ const sfx={btn:()=>blip(900,.04),chk:()=>blip(160,.06),clack:()=>{blip(300,.04);
 function motor(){}
 
 /* cd drawing */
-let K=1,DS=220,left='book',pg=0,cust={};try{cust=JSON.parse(localStorage.getItem('pd.cust')||'{}')}catch(e){}
-const applyCust=()=>cds.forEach(c=>Object.assign(c,cust[c.id]||{}));
-const saveCust=c=>{cust[c.id]={color:c.color,ink:c.ink,home:c.home,doodle:c.doodle,label:c.label};try{localStorage.setItem('pd.cust',JSON.stringify(cust))}catch(e){}};
+let K=1,DS=220,left='book',pg=0,cust={},hidden=[];try{hidden=JSON.parse(localStorage.getItem('pd.hide')||'[]')}catch(e){}try{cust=JSON.parse(localStorage.getItem('pd.cust')||'{}')}catch(e){}
+const applyCust=()=>cds.forEach(c=>{const v=cust[c.id];if(v){Object.assign(c,v);if(v.home===undefined&&c.thumb)c.home=true}});
+const saveCust=c=>{cust[c.id]={color:c.color,ink:c.ink,home:!!c.home,doodle:c.doodle,label:c.label};try{localStorage.setItem('pd.cust',JSON.stringify(cust))}catch(e){}};
 const mins=c=>c.dur?' · '+Math.round(c.dur/60)+' min':'';
 let U=0;
 function arcText(name,cnt){const id='t'+(U++);let l1='',l2='';
@@ -236,8 +239,8 @@ function arcText(name,cnt){const id='t'+(U++);let l1='',l2='';
  if(!l1){l1=name.slice(0,20);l2=name.slice(20)}
  const cut=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t,tp=(i,t)=>`<text><textPath href="#${id}${i}" startOffset="50%" text-anchor="middle">${esc(t)}</textPath></text>`;
  return `<svg viewBox="0 0 100 100"><defs><path id="${id}a" d="M12,50 A38,38 0 0 1 88,50"/><path id="${id}b" d="M21,50 A29,29 0 0 1 79,50"/><path id="${id}c" d="M16,50 A34,34 0 0 0 84,50"/></defs>${tp('a',cut(l1,22))}${l2?tp('b',cut(l2,18)):''}${tp('c',cnt)}</svg>`}
-function disc(cd,sz){const d=document.createElement('div'),h=!cd.cover||cd.home;d.className='cd'+(h?' home':'');d.style.setProperty('--s',sz+'px');d.style.setProperty('--c',cd.color);d.style.setProperty('--ink',cd.ink||'#222222');
- if(!h)d.style.backgroundImage=`url(${cd.cover})`;else d.innerHTML=`<u class="${cd.doodle||''}"></u>${arcText(cd.label||cd.name,cd.count+' songs'+mins(cd))}`;return d}
+function disc(cd,sz){const d=document.createElement('div'),img=cd.cover||(cd.thumbOn&&cd.thumb),h=!img||cd.home;d.className='cd'+(h?' home':'');d.style.setProperty('--s',sz+'px');d.style.setProperty('--c',cd.color);d.style.setProperty('--ink',cd.ink||'#222222');
+ if(!h)d.style.backgroundImage=`url(${img})`;else d.innerHTML=`<u class="${cd.doodle||''}"></u>${arcText(cd.label||cd.name,cd.count+' songs'+mins(cd))}`;return d}
 const visible=()=>cds.filter(c=>!c.out);
 function drawStack(){const st=$('#stack');st.innerHTML='';visible().slice(0,7).reverse().forEach((c,i,a)=>{const e=document.createElement('div');e.className='sd';e.dataset.id=c.id;e.style.setProperty('--c',c.color);e.title=c.name;if(c.ghost)e.style.visibility='hidden';if(i===a.length-1)e.onclick=()=>preview(c);st.append(e)})}
 function drawBook(){const g=$('#pg');g.innerHTML='';const v=visible(),n=Math.max(1,Math.ceil(v.length/4));pg=Math.min(pg,n-1);
@@ -326,22 +329,24 @@ function act(a){switch(a){
 function showPoster(u){modal(`<img src="${u}" alt="Poster" style="max-width:100%;max-height:68vh;border-radius:10px"><button data-x>Close</button>`)}
 /* modals */
 const modal=h=>{const M=$('#modal');M.innerHTML='<div class="card">'+h+'</div>';M.classList.add('on')},closeM=()=>$('#modal').classList.remove('on');
-function preview(cd){modal(`<h2>${esc(cd.label||cd.name)}</h2><div id="pv"></div><p>${cd.count+' songs'+mins(cd)}</p><div><button id="ins">Insert</button> <button id="cu">Customize</button> <button data-x>✕</button></div>`);
- $('#pv').append(disc(cd,200));$('#ins').onclick=()=>insert(cd);$('#cu').onclick=()=>custom(cd)}
+function preview(cd){modal(`<h2>${esc(cd.label||cd.name)}</h2><div id="pv"></div><p>${cd.count+' songs'+mins(cd)}</p><div><button id="ins">Insert</button> <button id="cu">Customize</button> <button id="rm">Remove</button> <button data-x>✕</button></div>`);
+ $('#pv').append(disc(cd,200));$('#ins').onclick=()=>insert(cd);$('#cu').onclick=()=>custom(cd);
+ $('#rm').onclick=e=>{const b=e.target;if(!b.dataset.sure){b.dataset.sure=1;b.textContent='Sure? Tap again';return}removeCD(cd)}}
+function removeCD(cd){if(loaded===cd){stop();loaded=null;renderTray();render()}cds=cds.filter(c=>c!==cd);if(!hidden.includes(cd.id))hidden.push(cd.id);try{localStorage.setItem('pd.hide',JSON.stringify(hidden))}catch(e){}renderStack();closeM()}
 function custom(cd){modal(`<h2>Customize CD</h2><div id="pv"></div>
  <label>Name <input id="cn" value="${esc(cd.label||cd.name)}"></label>
  <label>Disc <input type="color" id="cc" value="${cd.color}"></label>
  <label>Sharpie <input type="color" id="ci" value="${cd.ink||'#222222'}"></label>
  <label>Design <select id="cs"><option value="">plain</option><option>dots</option><option>stripes</option><option>rings</option></select></label>
- ${cd.cover?'<label>Homemade look <input type="checkbox" id="ch"></label>':''}<button id="ok">Done</button>`);
- $('#cs').value=cd.doodle||'';if(cd.cover)$('#ch').checked=!!cd.home;
- const up=()=>{cd.label=$('#cn').value;cd.color=$('#cc').value;cd.ink=$('#ci').value;cd.doodle=$('#cs').value;if(cd.cover)cd.home=$('#ch').checked;$('#pv').innerHTML='';$('#pv').append(disc(cd,200))};
+ ${(cd.cover||cd.thumb)?'<label>Homemade look <input type="checkbox" id="ch"></label>':''}<button id="ok">Done</button>`);
+ $('#cs').value=cd.doodle||'';if(cd.cover||cd.thumb)$('#ch').checked=!!cd.home;
+ const up=()=>{cd.label=$('#cn').value;cd.color=$('#cc').value;cd.ink=$('#ci').value;cd.doodle=$('#cs').value;if(cd.cover||cd.thumb)cd.home=$('#ch').checked;$('#pv').innerHTML='';$('#pv').append(disc(cd,200))};
  ['cn','cc','ci','cs','ch'].forEach(i=>{const e=$('#'+i);if(e)e.addEventListener('input',up)});up();
  $('#ok').onclick=()=>{saveCust(cd);renderStack();renderTray();preview(cd)}}
 function modal2(k){return({
  how:`<h2>How to use</h2><p>1. Tap Add YouTube and paste a channel @handle or a playlist link. Every public playlist becomes a CD.<br>2. Tap a CD (top of the spindle, or in the book), then Insert. Customize changes its colors and sharpie.<br>3. Drawers: stickers go anywhere (drag one back onto the drawers to put it away). The CD book can replace the spindle.<br>4. OPEN lifts the lid. Tap the disc to take it out.</p><button data-x>Got it</button>`,
- yt:`<h2>Add YouTube</h2><input id="q" placeholder="@channel or playlist link"><button id="go">Make CDs</button><p id="st"></p><button data-x>Close</button>`})[k]}
-function openM(k){modal(modal2(k));if(k==='yt')$('#go').onclick=()=>addSrc(k,$('#q').value)}
+ yt:`<h2>Add YouTube</h2><input id="q" placeholder="paste a playlist, @channel or video link"><button id="go">Make CDs</button><p id="st"></p>${hidden.length?'<button id="rs">Bring back removed CDs ('+hidden.length+')</button>':''}<button data-x>Close</button>`})[k]}
+function openM(k){modal(modal2(k));if(k==='yt'){$('#go').onclick=()=>addSrc(k,$('#q').value);const r=$('#rs');if(r)r.onclick=()=>{hidden=[];try{localStorage.removeItem('pd.hide')}catch(e){}location.reload()}}}
 
 /* Program mode: tap songs in the order you want */
 function progUI(){if(!loaded){flash('NO DISC');return}let seq=P.prog?[...P.order]:[];
@@ -352,7 +357,7 @@ function progUI(){if(!loaded){flash('NO DISC');return}let seq=P.prog?[...P.order
 
 /* skins */
 const ANG={play:0,next:30,rep:60,shuf:90,intro:120,vp:150,open:180,vm:210,prog:240,disp:270,stop:300,prev:330};
-function setSkin(k){$('#dm').classList.remove('portable','classic');$('#dm').classList.add(k);DS=k==='portable'?220:160;
+function setSkin(k){$('#dm').classList.remove('portable','classic');$('#dm').classList.add(k);DS=k==='portable'?220:160;{const l=$('.lcd');if(k==='portable')$('.lid').append(l);else $('.well').after(l)}
  document.querySelectorAll('.dm [data-a]').forEach(b=>{const a=ANG[b.dataset.a];b.style.transform=k==='portable'?`rotate(${a}deg) translateY(-140px) rotate(${-a}deg)`:''});
  $('#bskin').textContent='Switch: '+(k==='portable'?'Classic':'Round');renderTray();render();try{localStorage.setItem('pd.skin',k)}catch(e){}}
 
@@ -360,7 +365,7 @@ function setSkin(k){$('#dm').classList.remove('portable','classic');$('#dm').cla
 async function addSrc(k,q,quiet){const st=$('#st');if(!quiet&&st)st.textContent='Loading…';
  try{const r=await fetch('/api/youtube'+'?q='+encodeURIComponent(q));let j;try{j=await r.json()}catch(e){throw new Error(r.status===404?'the helper file api/youtube.js was not found on your site':'the server sent an unexpected answer (code '+r.status+')')}if(!r.ok)throw new Error(j.error);
   const have=new Set(cds.map(c=>c.id));
-  const n=j.cds.filter(c=>!have.has(c.id)).map((c,i)=>({...c,src:k,color:COL[(cds.length+i)%6]}));
+  const n=j.cds.filter(c=>!have.has(c.id)&&!hidden.includes(c.id)).map((c,i)=>({...c,src:k,thumbOn:true,color:COL[(cds.length+i)%6]}));
   if(n.length)cds=n.concat(cds.filter(c=>c.src!=='sim'||c===loaded));
   applyCust();renderStack();if(!quiet){save(k+'|'+q);closeM()}}
  catch(e){if(!quiet&&st)st.textContent='Could not load: '+e.message}}
@@ -398,7 +403,7 @@ function pickDec(k){slots[0]=k;DECS[room]=k;try{localStorage.setItem('pd.dec2',J
 function initDec(){document.querySelectorAll('.slot').forEach((el,i)=>el.onclick=()=>$('#d3').classList.toggle('open'));drawDec()}
 
 let sk='portable';try{sk=localStorage.getItem('pd.skin')||sk}catch(e){}if(sk!=='portable')sk='classic';
-try{room=localStorage.getItem('pd.room')==='boy'?'boy':'girl'}catch(e){}applyCust();renderStack();setSkin(sk);initDec();setRoom(room);
+try{room=localStorage.getItem('pd.room')==='boy'?'boy':'girl'}catch(e){}cds=cds.filter(c=>!hidden.includes(c.id));applyCust();renderStack();setSkin(sk);initDec();setRoom(room);
 </script>
 </body>
 </html>
