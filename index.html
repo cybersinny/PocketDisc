@@ -116,7 +116,9 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 .hot{position:absolute;width:40px;height:38px;z-index:4}
 /* menu */
 .menu{position:relative}
-#mpanel{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:6px;min-width:200px;flex-direction:column;gap:2px;padding:6px;background:#fff5fa;border:3px solid #fff;outline:2px solid #ff9ad0;border-radius:16px;box-shadow:0 6px 0 #d77fae}
+#room .top #bmenu{width:30px;height:30px;padding:0;border-radius:50%;font-size:16px;line-height:1;background:#ffffff80;border:2px solid #fff;color:var(--ink);opacity:.55;transition:opacity .2s}
+#room .top .menu:hover #bmenu,#room .top .menu:focus-within #bmenu{opacity:1}
+#mpanel{display:none;position:absolute;top:100%;right:0;margin-top:6px;min-width:200px;flex-direction:column;gap:2px;padding:6px;background:#fff5fa;border:3px solid #fff;outline:2px solid #ff9ad0;border-radius:16px;box-shadow:0 6px 0 #d77fae}
 #mpanel.on{display:flex}
 #room .top #mpanel button{width:100%;text-align:left;background:none;border:0;border-radius:10px;padding:7px 12px;font-size:15px;color:var(--ink);cursor:pointer}
 #room .top #mpanel button:hover{background:#ffd6ea}
@@ -203,7 +205,7 @@ img.pos{display:block;width:92px;height:123px;object-fit:cover;border:4px solid 
 </head>
 <body>
 <div id="pan"><div id="room">
-  <div class="top"><button data-m="yt">▶ Add YouTube</button><div class="menu"><button id="bmenu" aria-haspopup="true">☰ Menu</button><div id="mpanel"><button data-u="how">❔ How to use</button><button data-u="room" id="broom">Room: Girl</button><button data-u="skin" id="bskin">Switch: Classic</button><button data-u="snd" id="bsnd">🔊 Click sounds: On</button><button data-u="fs" id="bfs">⛶ Fullscreen</button><button data-u="calm" id="bcalm">😌 Calm mode: Off</button><button data-u="link">🔗 Copy site link</button><button data-u="rs" id="brs" style="display:none">↩ Bring back removed CDs</button><button data-u="stk" id="bstk">✨ Remove stickers</button><button data-u="rst" id="brst">♻ Reset this room</button></div></div></div>
+  <div class="top"><button data-m="yt">▶ Add YouTube</button><button data-u="room" id="broom">Room: Girl</button><button data-u="skin" id="bskin">Switch: Classic</button><div class="menu"><button id="bmenu" aria-label="Menu" aria-haspopup="true">☰</button><div id="mpanel"><button data-u="how">❔ How to use</button><button data-u="snd" id="bsnd">🔊 Click sounds: On</button><button data-u="fs" id="bfs">⛶ Fullscreen</button><button data-u="calm" id="bcalm">😌 Calm mode: Off</button><button data-u="link">🔗 Copy site link</button><button data-u="rs" id="brs" style="display:none">↩ Bring back removed CDs</button><button data-u="stk" id="bstk">✨ Remove stickers</button><button data-u="rst" id="brst">♻ Reset this room</button></div></div></div>
   <div class="win"></div>
   <div id="egg" aria-hidden="true"><img id="eggimg" alt=""></div>
   <div class="hot" style="left:50px;top:192px"></div><div class="hot" style="left:50px;top:60px"></div>
